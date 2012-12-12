@@ -1,0 +1,70 @@
+%!Mode:: "TeX:UTF-8"
+\documentclass{beamer}
+\usepackage{xeCJK}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{soul}
+\usepackage{ulem}
+
+\setCJKmainfont{AR PL SungtiL GB}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+    language=sh,
+    %basicstyle=\footnotesize\ttfamily,
+    basicstyle=\scriptsize\ttfamily,
+    frameround=tttt,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    escapeinside={(*@}{@*)},
+    %otherkeywords={$, \{, \}, \[, \]},
+}
+
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\usetheme{Madrid}
+\begin{document}
+
+\title{Git + Trac + Dyb2Sim}
+\author{
+    \texorpdfstring{林韬
+                    \newline
+                    \href{mailto:lintao@ihep.ac.cn}
+                    {\footnotesize\ttfamily{lintao@ihep.ac.cn}}}
+                    {Lin Tao}
+}
+
+\institute{IHEP}
+
+\maketitle
+
+\begin{frame}
+    \frametitle{OUTLINE}
+    \tableofcontents
+\end{frame}
+
+\section{Quick Start}
+    \input{sub_quickstart.tex}
+\section{Dyb2Sim}
+    \input{sub_dyb2sim.tex}
+\section{Git}
+    \input{sub_git.tex}
+\section{Trac}
+    \input{sub_trac.tex}
+
+\section*{end}
+\begin{frame}
+    \begin{center}
+        \LARGE Q \& A
+    \end{center}
+\end{frame}
+
+\end{document}

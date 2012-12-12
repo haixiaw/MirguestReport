@@ -1,0 +1,97 @@
+%!Mode:: "TeX:UTF-8"
+%\begin{frame}
+%    \frametitle{OUTLINE}
+%    \begin{itemize}    
+%        \item
+%    \end{itemize}
+%\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \LARGE \tt{Dyb2Sim}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{软件依赖的库}
+    \begin{itemize}
+        \item \tt{GEANT4 9.4}
+        \item \tt{ROOT 5.34}
+        \item \tt{CLHEP-2.1.0.1}
+        \item \tt{CERNLIB 2006}
+            \begin{itemize}
+                \item 主要用于产生子Thorium和Uranium
+            \end{itemize}
+    \end{itemize}
+    \begin{alertblock}{说明}
+    \begin{itemize}
+        \item 关于运行代码的操作系统，理论应该支持linux的各发行版
+        \item 测试过的系统有\tt{SLC}，\tt{Ubuntu}和\tt{OpenSUSE}
+        \item 但\tt{CERNLIB 2006}还没有迁移至\tt{OpenSUSE}
+        \item 目前的代码只支持到\tt{GEANT4 9.4}，未迁移至\tt{GEANT4 9.5}
+    \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}
+    \frametitle{软件的目录结构}
+    \begin{itemize}    
+        \item \tt{DetSim}
+            \begin{itemize}
+                \item \tt{DetSimX}
+                \item \tt{GenSim}
+                \item \tt{PhysiSim}
+                \item \tt{PMTSim}
+                \item \tt{SimUtil}
+            \end{itemize}
+        \item \tt{Generator}
+            \begin{itemize}
+                \item \tt{InverseBeta}
+                \item \tt{RadioActivity}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{子模块简介}
+    \begin{block}{\tt{DetSimX}}
+        \begin{itemize}    
+            \item 由于二期的探测器处于原型开发阶段，有很多方案
+            \item 我们目前暂定：根据方案号\tt{X}，创建目录\tt{DetSimX}。
+            \item 目前提供\tt{DetSim0}作为参考模板。
+        \end{itemize}
+    \end{block}
+    \begin{block}{\tt{GenSim}}
+    \begin{itemize}    
+        \item 主要用于\tt{GEANT4}的\tt{Primary Generator Action}
+        \item 包含的功能：
+            \begin{itemize}    
+                \item 位置产生
+                \item 解析\tt{HepEvt}
+            \end{itemize}
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{子模块简介}
+    \begin{block}{\tt{PhysiSim}}
+        \begin{itemize}    
+            \item 主要用于\tt{GEANT4}的物理过程
+            \item 来源于一期的代码
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{\tt{PMTSim}}
+        \begin{itemize}    
+            \item 主要用于PMT的模拟
+            \item 需要更加灵活
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{\tt{SimUtil}}
+        \begin{itemize}    
+            \item 主要用于模拟中的公用代码
+        \end{itemize}
+    \end{block}
+\end{frame}

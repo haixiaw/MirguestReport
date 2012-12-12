@@ -1,0 +1,380 @@
+%!Mode:: "TeX:UTF-8"
+%\begin{frame}
+%    \frametitle{OUTLINE}
+%    \begin{itemize}    
+%        \item
+%    \end{itemize}
+%\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \LARGE \tt{Quick Start}
+    \end{center}
+\end{frame}
+
+\newsavebox{\QuickStartEnvSetup}
+\begin{lrbox}{\QuickStartEnvSetup}
+\begin{lstlisting}
+Login lxslc5.ihep.ac.cn
+$ mkdir ~/tutProject
+$ cd ~/tutProject
+create bashrc which contains Line 6 to 8
+$ cat bashrc 
+source /panfs/panfs.ihep.ac.cn/home/dyb/dybsw/dyb2/external/local/bashrc
+export G4WORKDIR=~/geant4
+export PATH=${G4WORKDIR}/bin/Linux-g++:$PATH
+$ source bashrc
+\end{lstlisting}
+\end{lrbox}
+
+\newsavebox{\QuickStartGitClone}
+\begin{lrbox}{\QuickStartGitClone}
+\begin{lstlisting}
+$ git clone (*@{\color{red}-o ltrepo}@*) git@dyb2app1.ihep.ac.cn:users/lintao/Dyb2Sim
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{环境设置 \&\& clone代码}
+    \begin{block}{环境设置}
+        \par\usebox{\QuickStartEnvSetup}
+    \end{block}
+    \begin{block}{导出代码}
+        \par\usebox{\QuickStartGitClone}
+    \end{block}
+    \begin{alertblock}{提示}
+        \begin{itemize}    
+            \item {\tt -o ltrepo}是给远程仓库设定别名，因此，名字可任意
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\newsavebox{\QuickStartDybCompile}
+\begin{lrbox}{\QuickStartDybCompile}
+\begin{lstlisting}
+$ cd Dyb2Sim/DetSim/DetSim0
+$ make
+\end{lstlisting}
+\end{lrbox}
+
+\newsavebox{\QuickStartDybRun}
+\begin{lrbox}{\QuickStartDybRun}
+\begin{lstlisting}
+$ dyb2main run.mac
+\end{lstlisting}
+\end{lrbox}
+
+\newsavebox{\QuickStartDybRunMore}
+\begin{lrbox}{\QuickStartDybRunMore}
+\begin{lstlisting}
+$ cd mac/
+$ ls
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{编译 \&\& 运行}
+    \begin{block}{编译}
+        \par\usebox{\QuickStartDybCompile}
+    \end{block}
+    \begin{block}{运行}
+        \par\usebox{\QuickStartDybRun}
+    \end{block}
+    \begin{block}{运行更多的mac文件}
+        \par\usebox{\QuickStartDybRunMore}
+    \end{block}
+\end{frame}
+
+\newsavebox{\QuickStartDybGeneratorCompile}
+\begin{lrbox}{\QuickStartDybGeneratorCompile}
+\begin{lstlisting}
+$ pwd
+(*@{\color{red}/afs/ihep.ac.cn/users/l/lint/}@*)tutProject/Dyb2Sim/DetSim/DetSim0/mac
+$ cd ../../../Generator/InverseBeta/
+$ make
+$ ls
+GNUmakefile  (*@{\color{green}IBD}@*)  include  src
+\end{lstlisting}
+\end{lrbox}
+
+\newsavebox{\QuickStartDybGeneratorRun}
+\begin{lrbox}{\QuickStartDybGeneratorRun}
+\begin{lstlisting}
+$ ./IBD --help
+查看帮助
+$ ./IBD -o (*@{\color{red}ibd.asc}@*) -n 1000
+$ cp ibd.asc ../../DetSim/DetSim0/mac/
+$ cd ../../DetSim/DetSim0/mac/
+$ head run_hepevt_ibd.mac -n 3
+/dyb2/gen/source/reset
+
+/dyb2/gen/source/HepEvt/append (*@{\color{red}ibd.asc}@*)
+$ dyb2main run_hepevt_ibd.mac 
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{编译 \&\& 运行 产生子}
+    \begin{block}{编译}
+        \par\usebox{\QuickStartDybGeneratorCompile}
+    \end{block}
+    \begin{block}{运行}
+        \par\usebox{\QuickStartDybGeneratorRun}
+    \end{block}
+\end{frame}
+
+\newsavebox{\QuickStartDybDevRemote}
+\begin{lrbox}{\QuickStartDybDevRemote}
+\begin{lstlisting}
+$ git remote show 
+(*@{\color{red}ltrepo}@*)
+$ git remote add (*@{\color{red}ownrepo}@*) git@dyb2app1.ihep.ac.cn:users/(*@{\color{red}lintao}@*)/(*@{\color{red}tutProject}@*)
+$ git remote show 
+(*@{\color{red}ltrepo}@*)
+(*@{\color{red}ownrepo}@*)
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{开发}
+    \begin{itemize}    
+        \item 根据不同的方案，建立不同的\tt{DetSim{\color{red}X}}
+        \item 暂时将\tt{DetSim0}作为开发的模板
+        \item 开发一个新任务时，尽量创建新的分支
+        \item 把自己本地代码，push到git服务器
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{设置远程仓库}
+    \begin{itemize}    
+        \item 此处，讲解如何添加远程仓库
+        \item 目前的策略：每个人可以往自己的目录下{\Large 写入}或{\Large 添加}项目
+        \item 其他开发者可以{\Large 读取}你的项目
+    \end{itemize}
+    \begin{block}{示例}
+        \par\usebox{\QuickStartDybDevRemote}
+    \end{block}
+    \begin{alertblock}{提示}
+        \begin{itemize}    
+            \item {\tt ownrepo}是给远程仓库设定别名
+            \item {\tt lintao}是申请时的账户
+            \item {\tt tutProject}是项目的名称
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\newsavebox{\QuickStartDybDevBranch}
+\begin{lrbox}{\QuickStartDybDevBranch}
+\begin{lstlisting}
+$ git branch 
+* master
+$ git checkout -b (*@{\color{red}lintao-dev}@*)
+Switched to a new branch '(*@{\color{red}lintao-dev}@*)'
+$ git branch 
+* (*@{\color{red}lintao-dev}@*)
+  master
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{创建新的分支}
+    \begin{itemize}    
+        \item 分支的创建是为了不影响其他人的开发
+        \item 保留master分支，便于合并
+        \item 创建自己的dev分支，此分支应该push到服务器
+        \item 创建其他分支时，最好从自己的dev分支开始
+    \end{itemize}
+    \begin{block}{示例}
+        \par\usebox{\QuickStartDybDevBranch}
+    \end{block}
+    \begin{alertblock}{提示}
+        \begin{itemize}    
+            \item {\tt git checkout -b}表示导出一个新的branch
+            \item 如果分支已经存在，只要{\tt git checkout}
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\newsavebox{\QuickStartDybDevBranchPush}
+\begin{lrbox}{\QuickStartDybDevBranchPush}
+\begin{lstlisting}
+$ git push (*@{\color{red}ownrepo}@*) (*@{\color{red}lintao-dev}@*)
+... skip ...
+To git@dyb2app1.ihep.ac.cn:users/lintao/tutProject
+ * [new branch]      lintao-dev -> lintao-dev
+\end{lstlisting}
+\end{lrbox}
+
+\newsavebox{\QuickStartDybDevBranchFetch}
+\begin{lrbox}{\QuickStartDybDevBranchFetch}
+\begin{lstlisting}
+$ git fetch (*@{\color{red}ltrepo}@*)
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{更多关于分支的常用操作}
+    \begin{block}{push分支至服务器}
+        \par\usebox{\QuickStartDybDevBranchPush}
+    \end{block}
+    \begin{block}{同步远程服务器仓库}
+        \par\usebox{\QuickStartDybDevBranchFetch}
+    \end{block}
+    \begin{alertblock}{提示}
+        \begin{itemize}    
+            \item {\tt git push}表示把当前的分支{\color{red}lintao-dev}推送到仓库{\color{red}ownrepo}
+            \item 对于不想分享的分支，就不要推送了
+            \item {\tt git fetch}，是为了更新远程仓库的本地备份，并与{\color{red}ltrepo}同步
+            \item 在多开发者的情况下，添加多个remote，可以方便同步
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\newsavebox{\QuickStartDybDevCommit}
+\begin{lrbox}{\QuickStartDybDevCommit}
+\begin{lstlisting}
+$ git commit -am '(*@{\color{red}Comment}@*)' 
+\end{lstlisting}
+\end{lrbox}
+
+\newsavebox{\QuickStartDybDevStatus}
+\begin{lrbox}{\QuickStartDybDevStatus}
+\begin{lstlisting}
+$ git status
+$ git diff
+$ gitk
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{本地工作目录常用命令}
+    \begin{block}{记录每次更新到本地仓库}
+        \par\usebox{\QuickStartDybDevCommit}
+    \end{block}
+    \begin{block}{查看工作目录的改动}
+        \par\usebox{\QuickStartDybDevStatus}
+    \end{block}
+    \begin{alertblock}{提示}
+        \begin{itemize}    
+            \item 在开发过程中，本页是最常用的命令
+            \item 最好让自己的代码处于跟踪状态
+            \item 另外，如果有图形X，可以使用\tt{gitk}查看历史
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\newsavebox{\QuickStartDybDevPull}
+\begin{lrbox}{\QuickStartDybDevPull}
+\begin{lstlisting}
+$ git pull (*@{\color{red}ownrepo}@*) (*@{\color{red}lintao-dev}@*)
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{同步仓库}
+    \begin{block}{使用\tt{git pull}进行同步合并}
+        \par\usebox{\QuickStartDybDevPull}
+    \end{block}
+    \begin{alertblock}{提示}
+        \begin{itemize}    
+            \item \tt{git pull}可认为是\tt{git fetch}后再\tt{git merge}
+            \item 即把远程仓库的分支合并到了本地仓库的相应分支中
+            \item 对于同步你个人的仓库，可以使用\tt{git pull}简化操作
+                \begin{itemize}
+                    \item 多份指向同一远程仓库的工作目录
+                \end{itemize}
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\newsavebox{\QuickStartDybDevMerge}
+\begin{lrbox}{\QuickStartDybDevMerge}
+\begin{lstlisting}
+$ git branch 
+* lintao-dev
+  master
+$ git checkout -b lintao-tut-1
+$ git checkout -b lintao-tut-2
+$ git branch 
+  lintao-dev
+  lintao-tut-1
+* lintao-tut-2
+  master
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{分支的合并}
+    \begin{block}{使用\tt{git checkout -b}创建分支}
+        \par\usebox{\QuickStartDybDevMerge}
+    \end{block}
+    \begin{alertblock}{提示}
+        \begin{itemize}    
+            \item \tt{git branch}可以查看分支的状况
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\newsavebox{\QuickStartDybDevMergeCont}
+\begin{lrbox}{\QuickStartDybDevMergeCont}
+\begin{lstlisting}
+$ touch TUT_TMP
+$ ls
+DetSim  Generator  README  (*@{\color{red}TUT\_TMP}@*)
+$ git add TUT_TMP
+$ git commit -am 'Add TUT_TMP in lintao-tut-2.'
+$ git checkout lintao-tut-1 
+Switched to branch 'lintao-tut-1'
+$ ls
+DetSim  Generator  README
+$ git merge lintao-tut-2 
+$ ls
+DetSim  Generator  README  (*@{\color{red}TUT\_TMP}@*)
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{分支的合并}
+    \begin{block}{使用\tt{git merge}进行合并}
+        \par\usebox{\QuickStartDybDevMergeCont}
+    \end{block}
+    \begin{alertblock}{提示}
+        \begin{itemize}    
+            \item 不同的分支互不影响
+            \item \tt{git merge}可在不同的分支间进行合并
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\newsavebox{\QuickStartSummary}
+\begin{lrbox}{\QuickStartSummary}
+\begin{lstlisting}
+$ dyb2main run.mac
+$ ./IBD -o (*@{\color{red}ibd.asc}@*) -n 1000
+$ git clone (*@{\color{red}-o ltrepo}@*) git@dyb2app1.ihep.ac.cn:users/lintao/Dyb2Sim
+$ git remote show 
+$ git remote add (*@{\color{red}ownrepo}@*) git@dyb2app1.ihep.ac.cn:users/(*@{\color{red}lintao}@*)/(*@{\color{red}tutProject}@*)
+$ git checkout -b (*@{\color{red}lintao-dev}@*)
+$ git push (*@{\color{red}ownrepo}@*) (*@{\color{red}lintao-dev}@*)
+$ git pull (*@{\color{red}ownrepo}@*) (*@{\color{red}lintao-dev}@*)
+$ git commit -am '(*@{\color{red}Comment}@*)' 
+$ git status
+$ git diff
+$ git merge lintao-tut-2 
+$ gitk
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{小结}
+        \begin{itemize}
+            \item 本节主要涉及了一些常用的操作
+            \item 涉及最多的便是\tt{git}这个工具
+            \item 希望能够帮助大家把程序运行起来
+            \item 并了解开发时如何使用这个工具
+        \end{itemize}
+        \begin{block}{常用命令回顾}
+            \par\usebox{\QuickStartSummary}
+        \end{block}
+\end{frame}
