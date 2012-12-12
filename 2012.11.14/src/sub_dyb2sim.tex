@@ -1,0 +1,118 @@
+%!Mode:: "TeX:UTF-8"
+%\begin{frame}
+%    \frametitle{OUTLINE}
+%    \begin{itemize}    
+%        \item
+%    \end{itemize}
+%\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \LARGE \tt{Dyb2Sim}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{代码需要进一步研究}
+    \begin{itemize}
+        \item 目前的代码，由于没有研究透彻，bug肯定是存在的
+        \item 例如\tt{Generator}中的产生子，就需要研究和改进
+        \item 尽管目前可能主要是开发\tt{DetSimX}
+        \item 但如果发现了问题，请您及时报告
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{软件依赖的库}
+    \begin{itemize}
+        \item \tt{GEANT4 9.4}
+        \item \tt{ROOT 5.34}
+        \item \tt{CLHEP-2.1.0.1}
+        \item \tt{CERNLIB 2006}
+            \begin{itemize}
+                \item 主要用于产生子Thorium和Uranium
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\newsavebox{\DybSimAddRemote}
+\begin{lrbox}{\DybSimAddRemote}
+\begin{lstlisting}
+$ git remote add (*@\hl{yourlabel}@*) \
+> git@dyb2app1.ihep.ac.cn:users/(*@\hl{you}@*)/Dyb2Sim
+$ git push (*@\hl{yourlabel}@*) master
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{获得dyb2app1上的代码}
+    \begin{itemize}
+        \item 由于仍处于初始阶段，代码暂时从此处获得：
+        \item {\scriptsize git clone git@dyb2app1.ihep.ac.cn:users/lintao/Dyb2Sim}
+        \item 为了能够把您的代码放到服务器上：
+    \end{itemize}
+    \par\usebox{\DybSimAddRemote}
+\end{frame}
+
+\begin{frame}
+    \frametitle{软件的目录结构}
+    \begin{itemize}    
+        \item \tt{DetSim}
+            \begin{itemize}
+                \item \tt{DetSimX}
+                \item \tt{GenSim}
+                \item \tt{PhysiSim}
+                \item \tt{PMTSim}
+                \item \tt{SimUtil}
+            \end{itemize}
+        \item \tt{Generator}
+            \begin{itemize}
+                \item \tt{InverseBeta}
+                \item \tt{RadioActivity}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{DetSimX}}
+    \begin{itemize}    
+        \item 由于二期的探测器处于原型开发阶段，有很多方案
+        \item 我们目前暂定：根据方案号\tt{X}，创建目录\tt{DetSimX}。
+        \item 目前提供\tt{DetSim0}作为参考模板。
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{GenSim}}
+    \begin{itemize}    
+        \item 主要用于\tt{GEANT4}的\tt{Primary Generator Action}
+        \item 包含的功能：
+            \begin{itemize}    
+                \item 位置产生
+                \item 解析\tt{HepEvt}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{PhysiSim}}
+    \begin{itemize}    
+        \item 主要用于\tt{GEANT4}的物理过程
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{PMTSim}}
+    \begin{itemize}    
+        \item 主要用于PMT的模拟
+        \item 需要更加灵活
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{SimUtil}}
+    \begin{itemize}    
+        \item 主要用于模拟中的公用代码
+    \end{itemize}
+\end{frame}

@@ -1,0 +1,133 @@
+%!Mode:: "TeX:UTF-8"
+
+\documentclass[20pt]{beamer}
+\usepackage{xeCJK}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{url}
+
+%\setCJKmainfont{Adobe Song Std}
+%\setCJKmainfont{WenQuanYi Zen Hei Mono}
+\setCJKmainfont{AR PL SungtiL GB}
+
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{ulem}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\setstcolor{red}
+\lstset{
+    language=sh,
+    %basicstyle=\footnotesize\ttfamily,
+    basicstyle=\scriptsize\ttfamily,
+    frameround=tttt,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    escapeinside={(*@}{@*)},
+    %otherkeywords={$, \{, \}, \[, \]},
+}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+
+\title{Git + Trac + Dyb2Sim}
+\author{
+    \texorpdfstring{林韬
+                    \newline
+                    \href{mailto:lintao@ihep.ac.cn}
+                    {\footnotesize\ttfamily{lintao@ihep.ac.cn}}}
+                    {Lin Tao}
+}
+
+\institute{IHEP}
+
+\maketitle
+
+\begin{frame}
+    \frametitle{OUTLINE}
+    \tableofcontents
+\end{frame}
+
+%\begin{frame}
+%    \frametitle{OUTLINE}
+%    \begin{itemize}    
+%        \item
+%    \end{itemize}
+%\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+    \frametitle{简介Dyb2Sim}
+    \begin{itemize}    
+        \item Dyb2Sim 是什么？
+            \begin{itemize}    
+                \item Dyb2Sim 是基于GEANT4的探测器模拟程序。
+                \item 使用 C++ 开发。
+                \item 用于大亚湾二期探测器原型研究。
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{简介Git\footnote{\url{http://en.wikipedia.org/wiki/Git\_(software)}}}
+    \begin{itemize}    
+        \item Git 是什么？
+            \begin{itemize}
+                \item Git 是由 Linus Torvalds 开发，用于 Linux 内核开发。
+                \item 分布式的版本控制和源代码管理系统。
+            \end{itemize}
+        \item 我们用它做什么？
+            \begin{itemize}
+                \item 对我们的代码进行管理。
+                \item 高效地进行开发。
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{简介Trac\footnote{\url{http://en.wikipedia.org/wiki/Trac}}}
+    \begin{itemize}    
+        \item Trac 是什么？
+            \begin{itemize}
+                \item Trac 是基于web的项目管理和bug追踪系统。
+                \item 用\tt{Python}开发。
+            \end{itemize}
+        \item 我们用它做什么？
+            \begin{itemize}
+                \item 汇报我们的进度。
+                \item 报告程序中的bug。
+                \item 开发者间进行交流。
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Git}
+
+    \input{sub_git.tex}
+
+\section{Trac}
+
+    \input{sub_trac.tex}
+
+\section{Dyb2Sim}
+
+    \input{sub_dyb2sim.tex}
+
+\section*{end}
+\begin{frame}
+    \begin{center}
+        \LARGE Q \& A
+    \end{center}
+\end{frame}
+
+\end{document}
