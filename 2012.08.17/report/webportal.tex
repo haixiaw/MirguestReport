@@ -1,0 +1,240 @@
+%!Mode:: "TeX:UTF-8"
+
+\documentclass[20pt]{beamer}
+
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+    language=Python,
+    basicstyle=\footnotesize\ttfamily,
+    frameround=tttt,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    %otherkeywords={$, \{, \}, \[, \]},
+}
+
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+
+\title{DIRAC Web Portal}
+%\author{Lin Tao}
+\author{
+    \texorpdfstring{Lin Tao 
+                    \newline 
+                    \href{mailto:lintao@ihep.ac.cn}
+                         {\footnotesize\ttfamily{lintao@ihep.ac.cn}}}
+    {Lin Tao}
+}
+\institute{IHEP}
+%\institute{\href{lintao@ihep.ac.cn} \\ IHEP}
+
+\maketitle
+
+\begin{frame}
+    \frametitle{OUTLINE}
+        \tableofcontents
+\end{frame}
+
+
+%\begin{frame}
+%    \frametitle{OUTLINE}
+%    \begin{itemize}    
+%        \item
+%    \end{itemize}
+%\end{frame}
+
+\section{Some Problems}
+
+\begin{frame}
+    \frametitle{Framework of Dirac Web Portal}
+    \begin{itemize}    
+        \item Dirac Web Portal is using Pylons.
+        \item But Pylons 1.0 seems not compatible with 0.9.X.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Reasons causing the Problem}
+    \begin{itemize}    
+        \item The redesign of Pylons.
+        \item Pylons depends on \emph{Many} External Libraries.
+            \begin{itemize}
+                \item These External Libraries are also changing.        
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Solution???}
+    \begin{itemize}    
+        \item \emph{UPDATE} the code to Pylons 1.0?
+        \item Use \emph{Other} Web Framework?
+
+            \begin{itemize}
+                \item But, there are so many web frameworks.
+                \item And, also, many web servers.
+            \end{itemize}
+
+        \item What's the REQUIREMENT?
+    \end{itemize}
+\end{frame}
+
+
+\section{Dive into Pylons Framework}
+
+\begin{frame}
+    \frametitle{Dive into Pylons Framework}
+    \begin{itemize}    
+        \item What does the Web Framework supply?
+        \item And, what does Web Portal really need?
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Pylons' Framework}
+    \begin{itemize}    
+        \item Model
+        \item View
+        \item Controller
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Structure of Web Portal}
+
+    What's in the directory of dirac?
+
+    \begin{tabular}{rl}
+        \hline
+        \tt{config/} & \tt{model/} \\
+   \tt{controllers/} & \tt{public/} \\
+           \tt{lib/} & \tt{templates/} \\
+        \hline
+    \end{tabular}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{dirac/config}}
+    \begin{description}    
+        \item[\tt{config}] contains: \tt{middleware.py},
+            \tt{environment.py} and \tt{routing.py}.
+
+        \item[\tt{routing.py}] map URL to Controller.
+    \end{description}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{\tt{dirac/lib}}
+    \begin{description}    
+        \item[\tt{lib}] Used by the application.
+            The controllers always import
+            Pylons module from here.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{dirac/public}}
+    \begin{description}    
+        \item[\tt{pubilc}] The static files.
+            HTML, Javascript, CSS, Pictures.
+        \item[\tt{Javascript}] In Client, using many Javascript
+            libraries to display the page.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{dirac/templates}}
+    \begin{description}    
+        \item[\tt{templates}] Used by the controller to
+            generate HTML dynamically.
+        \item[\tt{Viewer}] In Pylons, templates is Viewer.
+            They are controlled by controllers.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\tt{dirac/controllers}}
+    \begin{description}    
+        \item[\tt{controllers}] controller is to response the
+            users' requests.
+        \item[\tt{In DIRAC}] controllers use {\tt RPC} to
+            dispatch the work to the DIRAC server.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{{\tt dirac/model}}
+    \begin{itemize}    
+        \item In DIRAC web portal, the model is not used.
+        \item The whole work are done by the DIRAC Server.
+    \end{itemize}
+\end{frame}
+
+\section{Quick Review}
+
+\begin{frame}
+    \frametitle{Quick Review}
+    \begin{itemize}    
+        \item In fact, we just use {\tt Controller}
+            and {\tt Viewer}.
+        \item The web portal is just a UI
+            to \emph{dispatch} work to the DIRAC server.
+            It will \emph{display} the results to the user.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{So, any Solution???}
+    \begin{itemize}    
+        \item The web portal server needs to run more effectively?
+        \begin{itemize}    
+            \item \emph{{\tt Mircro Web Framework}}?
+            \item {\tt WSGI}? Seperate the application and server ???
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section*{end}
+\begin{frame}
+
+    \begin{center}
+        \LARGE Q \& A
+    \end{center}
+\end{frame}
+
+%\begin{frame}
+%    \frametitle{OUTLINE}
+%    \begin{itemize}    
+%        \item
+%    \end{itemize}
+%\end{frame}
+%\begin{frame}
+%    \frametitle{OUTLINE}
+%    \begin{itemize}    
+%        \item
+%    \end{itemize}
+%\end{frame}
+%\begin{frame}
+%    \frametitle{OUTLINE}
+%    \begin{itemize}    
+%        \item
+%    \end{itemize}
+%\end{frame}
+
+%\section{Appendix}
+
+\end{document}
