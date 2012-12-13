@@ -114,8 +114,9 @@ $ python bes-dirac-dms-get-lfn-by-dataset.py --help
 \begin{frame}
     \frametitle{反射光锥，柱型摆放}
     \begin{columns}
-        \column{7.0cm} 
+        \column{6.0cm} 
             \includegraphics[height=7cm, keepaspectratio]{data/tube_full_random.png}
+
         \column{4.0cm} 
             \begin{itemize}
                 \item 探测器为液闪+有机玻璃罐+油。
@@ -174,6 +175,16 @@ $ python bes-dirac-dms-get-lfn-by-dataset.py --help
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{在一个PMT的玻璃上产生本底事例}
+    \includegraphics[height=8cm,keepaspectratio]{data/gen_in_pmt.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{能量分辨率研究}
+    \includegraphics[height=8cm,keepaspectratio]{data/sigma.png}
+\end{frame}
+
 \newsavebox{\BackgroundTest}
 \begin{lrbox}{\BackgroundTest}
 \begin{lstlisting}[language=C++]
@@ -201,11 +212,6 @@ for(Int_t i=0; i < 50000; ++i) {
 \begin{frame}
     \frametitle{本底混合的代码}
     \par\usebox{\BackgroundTest}
-\end{frame}
-
-\begin{frame}
-    \frametitle{在一个玻璃上产生事例}
-        %\includegraphics[height=8cm,keepaspectratio]{data/}
 \end{frame}
 
 % The other works.
