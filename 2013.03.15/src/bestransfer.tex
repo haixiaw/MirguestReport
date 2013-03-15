@@ -1,6 +1,6 @@
 %!Mode:: "TeX:UTF-8"
 
-\documentclass[20pt]{beamer}
+\documentclass[19pt]{beamer}
 
 \usepackage{xcolor}
 \usepackage{soul}
@@ -8,6 +8,8 @@
 
 \setbeamertemplate{footline}[frame number]
 \setbeamertemplate{navigation symbols}{}
+
+\usetheme{Madrid}
 
 \begin{document}
 
@@ -42,6 +44,26 @@
     \end{center}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Why we need a Transfer System?}
+    \begin{block}{The basic functionalities}
+        \begin{itemize}
+            \item Transfer the production results to IHEP.
+            \item Transfer {\tt DST} Files to sites.
+        \end{itemize}
+    \end{block}
+    \begin{block}{What's more}
+        \begin{itemize}
+            \item When transfer the files in a dataset, users
+                  don't need to always wait and monitor the results.
+            \item If possible, the transfer system can try to re-transfer
+                  the failed files.
+            \item Administrators can monitor and analysis the status of the 
+                  sites by the transfer monitor.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
 \section{Requirements}
 
 \begin{frame}
@@ -50,12 +72,69 @@
     \end{center}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Requirements}
+    \begin{block}{Users}
+        \begin{itemize}
+            \item Create datasets.
+            \item Create dataset-based data transfer requests.
+            \item Monitor the status of requests.
+        \end{itemize}
+    \end{block}
+    \begin{block}{Administrators}
+        \begin{itemize}
+            \item Approve or Reject the requests.
+            \item Check the health of transfer channels.
+            \item View history of the transfer system.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
 \section{Commands Design}
 
 \begin{frame}
     \begin{center}
         \LARGE \tt{COMMANDs DESIGN}
     \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What are the Commands we may want}
+    \begin{itemize}
+        \item Create Transfer Request.
+        \item List the detailed information of the request.
+        \item List the status of the transfer system.
+    \end{itemize}
+    \begin{exampleblock}{Xiaomei's suggestion}
+        \begin{itemize}
+            \item {\tt BES-transfer-request-create datset dstSE}
+            \item {\tt BES-transfer-request-list --requestID --user
+                        --time\_create --status}
+            \item {\tt BES-transfer-request-status requestID}
+            \item {\tt BES-transfer-status}
+        \end{itemize}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \frametitle{the Commands already exists}
+    \begin{description}
+        \item[{\tt bes-dirac-dataset-create.py}]
+            Create a Dataset with a list of {\tt LFN}.
+        \item[{\tt bes-dirac-dataset-list.py}]
+            List the {\tt LFN} in the dataset.
+        \item[{\tt bes-dirac-transfer-create.py}]
+            Create a transfer request with a dataset name.
+        \item[{\tt bes-dirac-transfer-status.py}]
+            Show the status of the Transfer Requests.
+        \item[{\tt bes-dirac-transfer-show.py}]
+            Show whole files associated with a special request.
+    \end{description}
+    \begin{block}{You can find the scripts in {\tt GitHub}}
+        \url{https://github.com/mirguest/BESDIRAC/tree/master/TransferSystem/scripts}
+
+        This system is still in evolutionary phase.
+    \end{block}
 \end{frame}
 
 \section{Transfer System Design}
