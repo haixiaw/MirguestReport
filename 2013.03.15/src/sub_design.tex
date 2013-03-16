@@ -40,6 +40,8 @@
         \item {\tt Transfer Agent} is the scheduler to create the transfer 
               processes.
         \item {\tt Transfer Request Service} is to create and monitor the requests.
+        \item The {\tt Transfer Agent} and the {\tt Transfer Request Service} 
+              use database as their shared memory.
         \item {\tt Dataset Service} is to create a dataset. Because we don't have
               dataset support in DFC, we use this as a temporary solution.
 
@@ -49,4 +51,85 @@
 \begin{frame}
     \frametitle{The Design of Transfer Agent}
     \includegraphics[height=8cm,keepaspectratio]{data/TransferAgent.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Design of Transfer Agent}
+    \begin{itemize}
+        \item In {\tt DIRAC}, {\tt AgentModule} is the base class for all {\tt
+            Agent}s. The derived classes can implement:
+        \begin{itemize}
+            \item {\tt initialize}
+            \item {\tt execute}
+            \item {\tt finalize}
+        \end{itemize}
+        \item {\tt TransferAgent} implements the {\tt non-blocking}
+              scheduler in the {\tt execute} method.
+        \item In fact, we create several {\tt sub processes} to run the 
+                transfer commands. The scheduler uses the {\tt achychronous I/O}
+                to communicate with the {\tt sub processes}.
+        \item To test more easily, we create a standard module {\tt helper}.
+              It just use the {\tt TransferDB} and some basic services supplied
+              by {\tt DIRAC}, such as the {\tt Configuration Service}.
+              So, we don't need to restart our agent to see what happens.
+        \item To support multiple transfer protocols, we use a {\tt
+                TransferFactory} to create {\tt TransferWorker}
+    \end{itemize}
+\end{frame}
+
+\newsavebox{\TransferAgentExecute}
+\begin{lrbox}{\TransferAgentExecute}
+\begin{lstlisting}
+def execute(self):
+  # Handle the existed transfer worker
+  for worker in self.transfer_worker[:]:
+    retcode = worker.get_retcode()
+    if retcode is not None:
+      self.transfer_worker.remove(worker)
+      # Handle retcode
+      worker.handle_exit(retcode)
+      self.helper.helper_remove_transfer(worker)
+    else:
+      worker.handle_waiting()
+    pass
+  else:
+    pass
+  # Create new transfer worker
+  idle_worker = self.MAX_TRANSFER - len(self.transfer_worker)
+  if idle_worker:
+    for i in xrange(idle_worker):
+      if not self.add_new_transfer():
+        break
+  return S_OK()
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Implementation of the method {\tt execute}}
+    \par\usebox{\TransferAgentExecute}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Implementation of the method {\tt execute}}
+    \begin{itemize}
+        \item The {\tt Transfer Worker} will manage the sub processes.
+        \item We use the {\tt non-blocking I/O} to query 
+              the status of the sub process.
+        \item If the sub process exits, we can handle the exit 
+              code by the {\tt Transfer Worker} itself.
+        \item If the sub process is still running, we can 
+              handle the output of the sub process.
+        \item After check the workers, we create new workers
+              to start the new transfer processes if there are
+              idle slots.
+        \item The status of the transfer requests are saved 
+              in the {\tt MySQL} database.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Table schemas}
+    \begin{block}{Four tables in current database.}
+    \includegraphics[width=12cm,keepaspectratio]{data/TransferDB.png}
+    \end{block}
 \end{frame}

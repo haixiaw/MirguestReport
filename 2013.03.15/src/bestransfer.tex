@@ -5,6 +5,27 @@
 \usepackage{xcolor}
 \usepackage{soul}
 \usepackage{url}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+    language=python,
+    %basicstyle=\footnotesize\ttfamily,
+    basicstyle=\scriptsize\ttfamily,
+    frameround=tttt,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    escapeinside={(*@}{@*)},
+    %otherkeywords={$, \{, \}, \[, \]},
+}
 
 \setbeamertemplate{footline}[frame number]
 \setbeamertemplate{navigation symbols}{}
