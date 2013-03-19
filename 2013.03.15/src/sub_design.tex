@@ -69,11 +69,11 @@
                 transfer commands. The scheduler uses the {\tt achychronous I/O}
                 to communicate with the {\tt sub processes}.
         \item To test more easily, we create a standard module {\tt helper}.
-              It just use the {\tt TransferDB} and some basic services supplied
+              It just uses the {\tt TransferDB} and some basic services supplied
               by {\tt DIRAC}, such as the {\tt Configuration Service}.
-              So, we don't need to restart our agent to see what happens.
+              So, we don't need to restart our agent to test the program.
         \item To support multiple transfer protocols, we use a {\tt
-                TransferFactory} to create {\tt TransferWorker}
+                TransferFactory} to create {\tt TransferWorker}s.
     \end{itemize}
 \end{frame}
 
