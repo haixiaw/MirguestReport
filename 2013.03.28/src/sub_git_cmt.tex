@@ -1,7 +1,158 @@
 %!Mode:: "TeX:UTF-8"
+\begin{frame}
+    \begin{center}
+        \LARGE \tt{GIT与CMT的结合}
+    \end{center}
+\end{frame}
 %\begin{frame}
 %    \frametitle{OUTLINE}
 %    \begin{itemize}    
 %        \item
 %    \end{itemize}
 %\end{frame}
+
+\begin{frame}
+    \frametitle{Git与CMT结合时的一些问题}
+    \begin{itemize}    
+        \item 所有的离线软件放置于一个仓库之中。
+        \item 例如：LHCb的DIRAC项目，就是一个统一的仓库。里面包含不同的system。
+              \url{https://github.com/DIRACGrid/DIRAC}。
+        \item 在CMT和CVS或SVN结合时，用户可以checkout
+              仓库中特定的目录或者文件。因为改动的可能不是非常多。
+              我们不希望导出库中所有的源代码。
+        \item 而Git由于分布式的原因，必须有导出所有的代码。
+        \item 由于我们的离线软件中，包含了各个方面的内容，因此，如果
+              checkout所有的代码，可能有些庞大。另外，各个不同包之间的
+              commit信息，是混合在一起的。这样可能效率低下。
+        \item 因此，我们要根据需求，对这个离线软件进行拆分。
+        \item 问题：如何拆分这些呢？
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{目录层次 方案一}
+    一个Container Package就对应一个Git仓库。
+    \renewcommand*\DTstylecomment{\rmfamily\color{red}\textsc}
+    \begin{block}{Offline Software}
+    \dirtree{%
+        .1 /\DTcomment{Git Repo}.
+        .2 Simulation\DTcomment{Submodule}.
+        .2 Reconstruction\DTcomment{Submodule}.
+        .2 Calibration\DTcomment{Submodule}.
+        .2 \ldots.
+    }
+    \end{block}
+
+    \begin{block}{Simulation Software}
+    \dirtree{%
+        .1 Simulation\DTcomment{Git Repo}.
+        .2 DetSimX.
+        .2 GenSim.
+        .2 PhysiSim.
+        .2 PMTSim.
+        .2 SimUtil.
+    }
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{方案一的优缺点}
+    \begin{itemize}
+        \item 层次比较单一。
+        \item 需要建立的git仓库较少。
+        \item 对于整个软件的发布较为简单。即Offline Software是由不同版本的
+              Submodule(如Simulation, Reconstruction)等构建而成。
+        \item 对于能否修改一个仓库下的Package，我们可以通过git服务端软件gitolite
+              对用户进行限制。
+        \item 开发人员导出代码时，可能还有很多无关的代码也被导出。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{目录层次 方案二}
+    每个Package建立一个相应的GIT仓库。然后由Container Package包含这些仓库。
+    而Container Package本身也是一个GIT仓库。
+    \renewcommand*\DTstylecomment{\rmfamily\color{red}\textsc}
+    \begin{block}{Offline Software}
+    \dirtree{%
+        .1 /\DTcomment{Git Repo}.
+        .2 Simulation\DTcomment{Submodule}.
+        .2 Reconstruction\DTcomment{Submodule}.
+        .2 Calibration\DTcomment{Submodule}.
+        .2 \ldots.
+    }
+    \end{block}
+
+    \begin{block}{Simulation Software}
+    \dirtree{%
+        .1 Simulation\DTcomment{Git Repo}.
+        .2 DetSimX\DTcomment{Submodule}.
+        .2 GenSim\DTcomment{Submodule}.
+        .2 PhysiSim\DTcomment{Submodule}.
+        .2 PMTSim\DTcomment{Submodule}.
+        .2 SimUtil\DTcomment{Submodule}.
+    }
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{方案二的优缺点}
+    \begin{itemize}
+        \item 层次比较复杂。
+        \item 需要建立的git仓库会很多。在BOSS中，有三百多个包。
+        \item 对于整个软件的发布较为复杂。即Offline Software是由不同版本的
+              Submodule(如Simulation, Reconstruction)构建而成。
+              而这些submodule又包含了不同版本的submodule。
+        \item 开发人员导出代码时，可以导出特定的Package。
+        \item 发布软件时，将会面对几百个包，要处理它们之间的版本。
+    \end{itemize}
+    \begin{block}{例子：Fedora Project Packages}
+        \url{http://pkgs.fedoraproject.org/cgit/}
+        \url{https://fedoraproject.org/wiki/Using\_Fedora\_GIT}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{目录层次 方案三}
+    每个Package建立一个相应的GIT仓库。但是直接包含于Offline Software下。
+    即Container Package直接存于Offline Software的仓库中。
+    \renewcommand*\DTstylecomment{\rmfamily\color{red}\textsc}
+    \begin{block}{Offline Software}
+    \dirtree{%
+        .1 /\DTcomment{Git Repo}.
+        .2 Simulation.
+        .3 DetSimX\DTcomment{Submodule}.
+        .3 GenSim\DTcomment{Submodule}.
+        .3 PhysiSim\DTcomment{Submodule}.
+        .3 PMTSim\DTcomment{Submodule}.
+        .3 SimUtil\DTcomment{Submodule}.
+        .2 Reconstruction.
+        .2 Calibration.
+        .2 \ldots.
+    }
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{方案三的优缺点}
+    \begin{itemize}
+        \item 层次相对复杂。通过Offline Software的目录结构，
+              可以了解可能包含的软件包。
+        \item 用户在导出Offline Software这个项目后，
+              可以使用{\tt git submodule}命令导出特定的包。
+        \item 同样，需要建立的git仓库也很多。
+        \item 发布软件时，也将会面对几百个包，要处理它们之间的版本。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{目录层次 方案X？}
+    \begin{itemize}
+        \item 对几个顶层的包分别建立git仓库，而这些包根据需要，
+              考虑是否继续拆分？
+        \item 或者初期先考虑使用一个仓库？但不管如何，
+              还是需要先设计好基本的目录结构。
+        \item 而随着项目的进行，再考虑存在什么问题？
+        \item 有何建议？
+    \end{itemize}
+\end{frame}
