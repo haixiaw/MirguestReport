@@ -57,7 +57,7 @@
     \frametitle{The Design of Transfer Agent}
     \begin{itemize}
         \item In {\tt DIRAC}, {\tt AgentModule} is the base class for all {\tt
-            Agent}s. The derived classes can implement:
+            Agent}s. The derived classes should implement:
         \begin{itemize}
             \item {\tt initialize}
             \item {\tt execute}
@@ -66,7 +66,7 @@
         \item {\tt TransferAgent} implements the {\tt non-blocking}
               scheduler in the {\tt execute} method.
         \item In fact, we create several {\tt sub processes} to run the 
-                transfer commands. The scheduler uses the {\tt achychronous I/O}
+                transfer commands. The scheduler uses the {\tt async I/O}
                 to communicate with the {\tt sub processes}.
         \item To test more easily, we create a standard module {\tt helper}.
               It just uses the {\tt TransferDB} and some basic services supplied
