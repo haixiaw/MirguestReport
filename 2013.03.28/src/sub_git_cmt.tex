@@ -61,7 +61,7 @@
 \begin{frame}
     \frametitle{方案一的优缺点}
     \begin{itemize}
-        \item 层次比较单一。
+        \item 层次单一。
         \item 需要建立的git仓库较少。
         \item 对于整个软件的发布较为简单。即Offline Software是由不同版本的
               Submodule(如Simulation, Reconstruction)等构建而成。
@@ -101,7 +101,7 @@
 \begin{frame}
     \frametitle{方案二的优缺点}
     \begin{itemize}
-        \item 层次比较复杂。
+        \item 层次复杂。
         \item 需要建立的git仓库会很多。在BOSS中，有三百多个包。
         \item 对于整个软件的发布较为复杂。即Offline Software是由不同版本的
               Submodule(如Simulation, Reconstruction)构建而成。
@@ -153,8 +153,9 @@
     \begin{itemize}
         \item 对几个顶层的包分别建立git仓库，而这些包根据需要，
               考虑是否继续拆分？
-        \item 如果包Private是私有的，仅用于辅助包Public，那么
-              包Private就可以包含在包Public的仓库之中，而无需单独建立仓库。
+        \item 如果{\tt Package Private}是私有的，仅用于辅助{\tt Package Public}，那么
+              {\tt Pacakge Private}就可以包含在
+              {\tt Package Public}的仓库之中，而无需单独建立仓库。
         \item 但不管如何，还是需要先设计好基本的目录结构。
               按照CMT方式构建的软件需要有很好的逻辑关系。
         \item 尽量降低依赖关系，避免循环依赖。
