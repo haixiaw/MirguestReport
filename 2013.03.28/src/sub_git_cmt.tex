@@ -14,17 +14,20 @@
 \begin{frame}
     \frametitle{Git与CMT结合时的一些问题}
     \begin{itemize}    
-        \item 所有的离线软件放置于一个仓库之中。
+        \item 为了简单，所有的离线软件可以放置于一个仓库之中。
         \item 例如：LHCb的DIRAC项目，就是一个统一的仓库。里面包含不同的system。
               \url{https://github.com/DIRACGrid/DIRAC}。
         \item 在CMT和CVS或SVN结合时，用户可以checkout
-              仓库中特定的目录或者文件。因为改动的可能不是非常多。
-              我们不希望导出库中所有的源代码。
-        \item 而Git由于分布式的原因，必须有导出所有的代码。
+              仓库中特定的目录或者文件。 我们不希望导出库中所有的源代码。
+        \item Git由于分布式的原因，必须有导出所有的代码。
+        \item 这里，经常困扰从cvs和svn迁移到git的用户。
         \item 由于我们的离线软件中，包含了各个方面的内容，因此，如果
               checkout所有的代码，可能有些庞大。另外，各个不同包之间的
               commit信息，是混合在一起的。这样可能效率低下。
         \item 因此，我们要根据需求，对这个离线软件进行拆分。
+        \item Git提供了{\tt submodule}的特性，我们可以使用。
+              \footnote{\scriptsize\url{http://git-scm.com/book/en/Git-Tools-Submodules}}
+              \footnote{\scriptsize\url{http://git.wiki.kernel.org/index.php/GitSubmoduleTutorial}}
         \item 问题：如何拆分这些呢？
     \end{itemize}
 \end{frame}
@@ -150,9 +153,12 @@
     \begin{itemize}
         \item 对几个顶层的包分别建立git仓库，而这些包根据需要，
               考虑是否继续拆分？
-        \item 或者初期先考虑使用一个仓库？但不管如何，
-              还是需要先设计好基本的目录结构。
-        \item 而随着项目的进行，再考虑存在什么问题？
+        \item 如果包Private是私有的，仅用于辅助包Public，那么
+              包Private就可以包含在包Public的仓库之中，而无需单独建立仓库。
+        \item 但不管如何，还是需要先设计好基本的目录结构。
+              按照CMT方式构建的软件需要有很好的逻辑关系。
+        \item 尽量降低依赖关系，避免循环依赖。
+        \item 而随着项目的进行，如果存在什么问题，我们需要及时改正。
         \item 有何建议？
     \end{itemize}
 \end{frame}
