@@ -2,7 +2,7 @@
 
 \begin{frame}
     \begin{center}
-        \LARGE \tt{CMT}
+        \LARGE \tt{CMT\footnote{本人对CMT的使用经验不够丰富，后面都是个人的见解}}
     \end{center}
 \end{frame}
 
@@ -21,7 +21,37 @@
                 \item 根据包之间的依赖关系，编译软件包
                 \item 设置软件包运行时环境
             \end{itemize}
-        \item 
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{CMT中的术语}
+    \begin{description}
+        \item[Project] 这个软件项目。包含相关的Package。
+        \item[Package] CMT中软件的基本单元。我们可以对其赋予不同的语义。
+        \item[Sub-Project] 由Package组成。其语义是用于对Package的归类。
+    \end{description}
+    \begin{block}{不同语义的Package}
+        \begin{description}
+            \item[Primary Package]
+            \item[Policy Package]
+            \item[Container or Management Package]
+            \item[Release Package]
+            \item[Glue or Interface Package]
+        \end{description}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{新的离线软件是否选择使用CMT}
+    \begin{itemize}
+        \item 从BOSS到NuWa，离线软件都使用CMT进行包管理。
+        \item 很多外部库都已经有了对应的CMT Requirement文件。例如LCGCMT。
+        \item 用户使用方便。不需要了解Makefile的编写。
+              软件运行时环境也自动设置。
+        \item 可能很多人都有使用经验。已有了用户习惯。
+        \item 有人给出，CMT的效率不高，相比于cmake，更加复杂。
+              Gaudi除了CMT编译外，还提供了cmake的方式。
+              \url{http://indico.cern.ch/getFile.py/access?contribId=2\&resId=1\&materialId=slides\&confId=105778}
+    \end{itemize}
+\end{frame}

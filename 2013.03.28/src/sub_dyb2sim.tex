@@ -1,4 +1,10 @@
 %!Mode:: "TeX:UTF-8"
+\begin{frame}
+    \begin{center}
+        \LARGE \tt{基于Sniper的Dyb2Sim}
+    \end{center}
+\end{frame}
+
 %\begin{frame}
 %    \frametitle{OUTLINE}
 %    \begin{itemize}    
@@ -6,3 +12,92 @@
 %    \end{itemize}
 %\end{frame}
 
+\begin{frame}
+    \frametitle{简介}
+    \begin{itemize}    
+        \item Sniper是新的软件框架，追求简洁，适合非对撞实验。
+        \item 主要提供了算法，服务和工具。
+        \item 我们的工作是将探测器模拟程序整合到框架中。
+        \item 参考邓子艳老师的工作，对Geant4中{\tt RunManager}进行了改造。
+              使其更适合于Sniper这个框架的工作行为。
+        \item 但和BOSS中有所不同。我将探测器模拟抽象为一个算法，
+              使用抽象工厂实现与不同模拟程序的连接。
+        \item 即原有的geant4程序无需做任何修改，只需要提供一个抽象工厂，
+              这样基于Sniper的DetSim会根据此工厂自动构建探测器。
+    \end{itemize}
+\end{frame}
+
+\newsavebox{\NoviceJobOptions}
+\begin{lrbox}{\NoviceJobOptions}
+\begin{lstlisting}
+#include "$DETSIMROOT/share/jobOptions.txt"
+Sniper.Dlls += {"Novice01"};
+SvcMgr.Contents += {"ExN01Factory"};
+
+Sniper.Cycler = "NormCycler";
+Sniper.InputSvc = "NONE";
+
+DetSim.DetFactory = "ExN01Factory";
+DetSim.RunMac = "run.mac";
+
+Sniper.EvtMax   = 2;
+Sniper.LogLevel = 3; // INFO
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Geant4 Novice01的整合：job option文件}
+    \par\usebox{\NoviceJobOptions}
+\end{frame}
+
+\newsavebox{\NoviceHeader}
+\begin{lrbox}{\NoviceHeader}
+\begin{lstlisting}
+class ExN01Factory:  virtual public SvcBase , 
+                     virtual public IDetSimFactory {
+public:
+    ExN01Factory(const std::string& name);
+    virtual ~ExN01Factory();
+
+    virtual G4VUserDetectorConstruction* createDetectorConstruction();
+    virtual G4VUserPhysicsList* createPhysicsList();
+    virtual G4VUserPrimaryGeneratorAction* createPrimaryGenerator();
+
+    virtual bool initialize();
+    virtual bool finalize();
+};
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Novice 01 需要提供的抽象工厂：头文件}
+    \par\usebox{\NoviceHeader}
+\end{frame}
+
+\newsavebox{\NoviceImpl}
+\begin{lrbox}{\NoviceImpl}
+\begin{lstlisting}
+G4VUserDetectorConstruction*
+ExN01Factory::createDetectorConstruction()
+{   
+    return new ExN01DetectorConstruction;
+}
+
+G4VUserPhysicsList*
+ExN01Factory::createPhysicsList()
+{   
+    return new ExN01PhysicsList;
+}
+
+G4VUserPrimaryGeneratorAction*
+ExN01Factory::createPrimaryGenerator()
+{   
+    return new ExN01PrimaryGeneratorAction;
+}
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Novice 01 需要提供的抽象工厂：实现}
+    \par\usebox{\NoviceImpl}
+\end{frame}
