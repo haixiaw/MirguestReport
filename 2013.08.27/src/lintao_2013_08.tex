@@ -1,0 +1,73 @@
+%!Mode:: "TeX:UTF-8"
+\documentclass{beamer}
+\usepackage{xeCJK}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{hepunits}
+
+%\setCJKmainfont{AR PL SungtiL GB}
+%\setCJKmonofont{AR PL SungtiL GB}
+\setCJKmainfont{SimSun}
+\setCJKmonofont{SimSun}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+    language=sh,
+    %basicstyle=\footnotesize\ttfamily,
+    basicstyle=\scriptsize\ttfamily,
+    frameround=tttt,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    escapeinside={(*@}{@*)},
+    %otherkeywords={$, \{, \}, \[, \]},
+}
+
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\usetheme{Madrid}
+\begin{document}
+
+\title{2013年08月份考核报告}
+\author{
+    \texorpdfstring{林韬
+                    \newline
+                    \href{mailto:lintao@ihep.ac.cn}
+                    {\footnotesize\ttfamily{lintao@ihep.ac.cn}}}
+                    {Lin Tao}
+}
+\institute{IHEP}
+
+\maketitle
+
+\begin{frame}
+    \frametitle{OUTLINE}
+    \tableofcontents
+\end{frame}
+
+\section{江门中微子实验探测器模拟及离线软件}
+    \input{sub_jmneoffline.tex}
+\section{BESDIRAC传输系统}
+    \input{sub_besdirac.tex}
+\section{小结}
+    \input{sub_summary.tex}
+\section*{end}
+\begin{frame}
+    \begin{center}
+        \LARGE Q \& A
+    \end{center}
+\end{frame}
+
+\end{document}
