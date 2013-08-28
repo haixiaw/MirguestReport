@@ -4,3 +4,32 @@
     \end{center}
 \end{frame}
 
+\begin{frame}
+    \frametitle{江门中微子实验软件工作}
+    \begin{itemize}
+        \item 离线软件环境的维护。
+        \item 探测器模拟软件的开发。
+            \begin{itemize}
+                \item 为应对不同方案的探测器构建，
+                      解耦PMT的构建与PMT的摆放，
+                      采用PMTManager方式构建PMT。
+                \item 基于PMTManager，实现球形PMT的构建，
+                      并研究PMT前方有挡块（四边形/六边形）
+                      时本底对能量分辨率的影响。
+                \item 研究在任意Physical Volume中的粒子产生。
+                      包括粒子的位置和动量的全局/局部变换。
+            \end{itemize}
+        \item Sniper离线框架中的Python Binding。
+            \begin{itemize}
+                \item 主要研究了Gaudi与BASF2框架中作业配置的实现
+                \item 学习了C++模板元编程技术
+                \item 实现了两种方式的Python作业配置
+                    \begin{itemize}
+                        \item 基于Job Option Parser
+                        \item 不依赖Job Option Parser
+                    \end{itemize}
+                \item 修改Sniper Kernel，去除Job Option的方式，
+                      改用全python的作业配置。
+            \end{itemize}
+    \end{itemize}
+\end{frame}
