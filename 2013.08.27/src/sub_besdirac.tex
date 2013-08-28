@@ -1,19 +1,36 @@
 \begin{frame}
     \begin{center}
-        \LARGE BESDIRAC及传输系统
+        \LARGE BESDIRAC传输系统
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{BESDIRAC及传输系统}
+    \frametitle{BESDIRAC传输系统}
     \begin{itemize}
         \item 为了在网格站点中都能够使用BESDIRAC中的程序，
               我们开始发布BESDIRAC。
+            \begin{itemize}
+                \item Transfer System
+                \item Badger
+                \item Web Portal
+            \end{itemize}
         \item 研究学习网页前端库ExtJS2。
         \item 开发了数据传输系统的Web Portal。
-        \item 程序组成
+        \item Web Portal实现的功能
             \begin{itemize}
-                \item 
+                \item 创建用户的传输请求
+                \item 查看传输请求列表
+                \item 查看特定传输请求中的文件传输状态
+            \end{itemize}
+        \item Web Portal开发流程
+            \begin{itemize}
+                \item 创建Pylons Controller，用于响应用户请求
+                \item 创建基于ExtJS2的前端代码，做为界面供用户使用
             \end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Transfer System Web Portal}
+    \includegraphics[height=8cm,keepaspectratio]{data/besdirac-transfer-req.png}
 \end{frame}
