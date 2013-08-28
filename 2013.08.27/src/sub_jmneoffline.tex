@@ -133,7 +133,7 @@
 \begin{scope}[every node/.style={single arrow, draw=none,fill=red!50,anchor=west,align=center}]
 \node [anchor=west,text width=2.8cm] at ([yshift=-1cm]wd.south) {生成动态库};
 \node [anchor=west,text width=6.1cm] at ([yshift=-2cm]wd.south) {生成辅助代码};
-\node [anchor=west,text width=2.8cm] at ([yshift=-3cm]lr.south) {链接};
+\node [anchor=west,text width=2.8cm] at ([yshift=-3cm]lr.south) {编译};
 \node [anchor=west,text width=6.1cm] at ([yshift=-3.5cm]sa.south) {链接生成Python可用库};
 \end{scope}
 
@@ -141,5 +141,65 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{解决方案一：基于Job Option}
 
+\begin{tikzpicture}[head/.style={line width=3pt,draw=gray,rounded corners=8pt,text width=3cm,align=center}]
+    \node[head,fill=green!60!black!50] (wd) {{\tt addOption \\
+                                                   (string obj, \\
+                                                    string name, \\
+                                                    string value)}};
+    \node[head,fill=yellow!40,right=of wd] (sa) {{\tt OptionParser}};
+    \node[head,fill=blue!40,right=of sa] (lr) {{\tt setOption \\
+                                                    (string obj, \\
+                                                     string name, \\
+                                                     Type\& var)}};
+
+\begin{scope}[every node/.style={single arrow, draw=none,fill=red!50,anchor=west,align=center}]
+    \node [anchor=west,text width=0.6cm] at (wd.east) {};
+    \node [anchor=west,text width=0.6cm] at (sa.east) {};
+\end{scope}
+\end{tikzpicture}
+    
+    \begin{itemize}
+        \item 这里的顺序非常重要
+        \item 需要先调用{\tt addOption}，再调用{\tt setOption}
+        \item 对{\tt addOption}进行了Python Binding
+        \item 在Python中以字符串的形式传入到Option Parser。
+        \item 有Option Parser对读入的字符串进行解析，
+              返回到{\tt setOption}的{\tt var}中。
+        \item 此处的局限性在于，在Python中设置的值与C++中不同步。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{解决方案二：独立的Python作业配置}
+
+\begin{tikzpicture}[head/.style={line width=3pt,draw=gray,rounded
+    corners=8pt,text width=3.5cm,align=center}]
+    \node[head,fill=green!60!black!50] (wd) {Client};
+    \node[head,fill=yellow!40,right=of wd] (sa) {Algs};
+
+\begin{scope}[line width=2pt,gray]
+\foreach \box in {wd,sa}
+  \draw ([yshift=-5pt]\box.south) -- +(0,-3.5cm);
+\end{scope}
+\begin{scope}[every node/.style={single arrow, draw=none,fill=red!40,anchor=west,align=center}]
+    \node [anchor=west,text width=4.3cm] at ([yshift=-1cm]wd.south) {{\tt declareProperty}};
+    \node [anchor=west,text width=4.3cm] at ([yshift=-2cm]wd.south) {{\tt setProperty}};
+    \node [anchor=west,text width=4.3cm] at ([yshift=-3cm]wd.south) {{\tt setProperty}};
+\end{scope}
+\end{tikzpicture}
+
+    \begin{itemize}
+        \item 使用C++模板技术，研究Gaudi，BASF2的实现
+        \item 使用模板特化标量，vector，map三种类型
+        \item 在框架代码中耦合了Boost.Python。
+        \item 类似Gaudi的Property接口
+            \begin{itemize}
+                \item {\tt declareProperty}
+                \item {\tt setProperty}
+                \item {\tt getProperty}
+            \end{itemize}
+        \item 实时设置property的值
+    \end{itemize}
 \end{frame}
