@@ -78,7 +78,7 @@
         \item {\tt /dyb2/det/pmt/type/name HelloPMTCover}使用带外罩的球形PMT
         \item {\tt /dyb2/det/pmt/cover/nside 4}设置外罩的边数
         \item {\tt /dyb2/det/filemode/path
-            hexagon.txt}读取文件中设置的位置及旋转
+            hexagon.txt}读取文件中设置的位置及旋转角度
     \end{itemize}
 \end{frame}
 
@@ -95,8 +95,15 @@
         \item 目前的实现中，需要给定完整的Physical Volume路径，
               根据此路径，计算仿射变换。
         \item 为了避免重复的计算，将路径对应的变换缓存起来。
-        \item 例如：{\tt /pWorld/pSteelBall/pTarget}就可以计算pWorld与pTarget
-              之间的变换，可用于pTarget中的PMT/模块与pWorld间的变换。
+        \item 例如：给定路径{\tt /pWorld/pSteelBall/pTarget}就可以计算pWorld与pTarget
+              之间的仿射变换。这样，就简化了之前在
+              PMT/模块（位于pTarget中）撒点的代码。
+        \item 局限性
+            \begin{itemize}
+                \item 路径需要完整，不会自动推导缺失的部分
+                \item 依赖于Geant4内核，需要Run Manager初始化后才能够使用
+                \item 即需要有完整的探测器结构
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
