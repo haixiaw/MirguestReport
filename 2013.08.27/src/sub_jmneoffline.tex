@@ -49,7 +49,7 @@
         \includegraphics[width=6cm,keepaspectratio]{data/Decorator_UML_class_diagram.svg.png}
         \column{6.0cm}
         \begin{itemize}
-            \item 在模拟中可以一致地处理PMT及含有PMT的模块
+            \item 目的：在模拟中一致地处理PMT及含有PMT的模块
             \item 可以解耦
                 \begin{itemize}
                     \item PMT/模块的构建
@@ -78,12 +78,12 @@
         \item {\tt /dyb2/det/pmt/type/name HelloPMTCover}使用带外罩的球形PMT
         \item {\tt /dyb2/det/pmt/cover/nside 4}设置外罩的边数
         \item {\tt /dyb2/det/filemode/path
-            hexagon.txt}读取文件中设置的位置及旋转角度
+            hexagon.txt}读取文件中设置的坐标及旋转角度，用于摆放PMT
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{任意Volume中粒子产生}
+    \frametitle{任意Volume中的粒子产生}
     \begin{itemize}
         \item 此处主要需要考虑任意Volume与全局世界之间的仿射变换。
                 \footnote{http://en.wikipedia.org/wiki/Affine\_transformation}
@@ -148,7 +148,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{解决方案一：基于Job Option}
+    \frametitle{作业配置解决方案一：基于Job Option}
 
 \begin{tikzpicture}[head/.style={line width=3pt,draw=gray,rounded corners=8pt,text width=3cm,align=center}]
     \node[head,fill=green!60!black!50] (wd) {{\tt addOption \\
@@ -172,14 +172,14 @@
         \item 需要先调用{\tt addOption}，再调用{\tt setOption}
         \item 对{\tt addOption}进行了Python Binding
         \item 在Python中以字符串的形式传入到Option Parser。
-        \item 有Option Parser对读入的字符串进行解析，
-              返回到{\tt setOption}的{\tt var}中。
+        \item 由Option Parser对读入的字符串进行解析，
+              调用{\tt setOption}时设置{\tt var}。
         \item 此处的局限性在于，在Python中设置的值与C++中不同步。
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{解决方案二：独立的Python作业配置}
+    \frametitle{作业配置解决方案二：独立的Python作业配置}
 
 \begin{tikzpicture}[head/.style={line width=3pt,draw=gray,rounded
     corners=8pt,text width=3.5cm,align=center}]
