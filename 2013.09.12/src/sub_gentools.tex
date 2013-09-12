@@ -1,0 +1,74 @@
+\begin{frame}
+    \begin{center}
+        \LARGE GenTools
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Introduction to GenTools
+                \footnote{Refer to DYB DocDB 1729, 1955}}
+    \begin{itemize}
+        \item In NuWa, GenTools can deal with:
+            \begin{itemize}
+                \item particle types and 4-momenta
+                \item vertex (position)
+                \item time (event rate)
+                \item transformation between local and global volume
+            \end{itemize}
+        \item Several generators in NuWa:
+            \begin{itemize}
+                \item IBD, $\bar{\nu}_e + p \longrightarrow e^{+} + n$
+                \item Cosmic-$\mu$s
+                \item Radioactive decays
+                \item Calibration sources
+            \end{itemize}
+        \item GenTools are called in one algorithm (Pipeline).
+            \begin{itemize}
+                \item Start with an empty event object.
+                \item Sequentially pass it through a series of tools.
+                \item Tools are configured by user.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Design of GenTools}
+
+\begin{tikzpicture}[head/.style={line width=3pt,draw=gray,rounded
+    corners=8pt,text width=2.0cm,align=center}]
+    \node[head,fill=green!60!black!50] (genalg) {GenAlg};
+    \node[head,fill=yellow!40,right=of genalg] (toolgun) {GunGen};
+    \node[head,fill=blue!40,right=of toolgun] (toolpos) {Positioner};
+    \node[head,fill=red!40,right=of toolpos] (tooltrans) {Transform};
+
+    \draw [decorate,decoration={brace,amplitude=10pt},xshift=-10pt,yshift=0pt]
+    (3.0,0.4) -- (11.0,0.4) node [black,midway,yshift=15pt] {\footnotesize
+    {\tt GenTools}};
+
+    \begin{scope}[line width=2pt,gray]
+    \foreach \box in {genalg,toolgun, toolpos, tooltrans}
+      \draw ([yshift=-5pt]\box.south) -- +(0,-3.5cm);
+    \end{scope}
+
+    \begin{scope}[every node/.style={single arrow, draw=none,fill=red!40,anchor=west,align=center}]
+        \node [anchor=west,text width=2.8cm] 
+            at ([yshift=-1cm]genalg.south)
+                {{\tt mutate}};
+        \node [anchor=west,text width=6.1cm] 
+            at ([yshift=-2cm]genalg.south) 
+                {{\tt mutate}};
+        \node [anchor=west,text width=9.4cm] 
+            at ([yshift=-3cm]genalg.south) 
+                {{\tt mutate}};
+    \end{scope}
+\end{tikzpicture}
+
+    \begin{itemize}
+        \item Interface:
+              {\tt IHepMCEventMutator::mutate(HepMC::GenEvent\& evt)}
+        \item Modular components: reuse vertex position tool
+              with different particle generators.
+        \item In this graph, the user select three tools.
+    \end{itemize}
+
+\end{frame}

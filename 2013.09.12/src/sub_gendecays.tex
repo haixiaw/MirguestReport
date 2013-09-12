@@ -1,0 +1,57 @@
+\begin{frame}
+    \begin{center}
+        \LARGE GenDecay
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Introduction to GenDecay
+                \footnote{DYB DocDB 3700}}
+    \begin{itemize}
+        \item To replace the standalone executables producing HepEvt.
+            \begin{itemize}
+                \item Do not integrate into offline framework
+                \item Random Number Engine is different.
+                \item Some implemented in FORTRAN.
+            \end{itemize}
+        \item Use nuclear decay data
+            \begin{itemize}
+                \item Evaluated Nuclear Structure Data File(ENSDF)
+                        \footnote{www.nndc.bnl.gov/ensdf}.
+                \item Use libmore to parse ENSDF files(But It seems the url to
+                        get the dataset had been changed, I can't get the data
+                        by the program.).
+                \item $\alpha$, $\beta$ and $\gamma$ decays.
+                \end{itemize}
+        \item building a chain using {\tt NucState} and {\tt NucDecay}
+            \begin{description}
+                \item[{\tt NucState}] Z/A, half life, energy level, collection
+                    of {\tt NucDecay}
+                \item[{\tt NucDecay}] connect NucStates of mother and daughter,
+                    decay type, energy of radiation and decay fraction.
+            \end{description}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Design of GenDecay}
+    \begin{itemize}
+        \item {\tt GtDecayerator}
+            \begin{itemize}
+                \item A GenTool, implemented {\tt mutate}.
+                \item use helper classes to generate an event in the Decay
+                    Chain.
+            \end{itemize}
+        \item Helper Classes and Functions
+            \begin{itemize}
+                \item {\tt NucState}
+                \item {\tt NucDecay}
+                \item {\tt Radiation}, include $\alpha$ decay, $\beta^\pm$
+                    decay, $\gamma$ decay, Electron Capture.
+                \item Energy of radiation is generated using Monte Carlo
+                    according to the spectrum.
+                \item {\tt DecayRates}, generate a decay in the decay chain.
+                    \footnote{still reading this code.}
+            \end{itemize}
+    \end{itemize}
+\end{frame}

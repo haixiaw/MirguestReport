@@ -1,0 +1,76 @@
+%!Mode:: "TeX:UTF-8"
+\documentclass{beamer}
+\usepackage{xeCJK}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{hepunits}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes,decorations.pathreplacing}
+
+%\setCJKmainfont{AR PL SungtiL GB}
+%\setCJKmonofont{AR PL SungtiL GB}
+\setCJKmainfont{SimSun}
+\setCJKmonofont{SimSun}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+    language=sh,
+    %basicstyle=\footnotesize\ttfamily,
+    basicstyle=\scriptsize\ttfamily,
+    frameround=tttt,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    escapeinside={(*@}{@*)},
+    %otherkeywords={$, \{, \}, \[, \]},
+}
+
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\usetheme{Madrid}
+\begin{document}
+
+\title{The Study of {\tt GenTools} in NuWa}
+\author{
+    \texorpdfstring{林韬
+                    \newline
+                    \href{mailto:lintao@ihep.ac.cn}
+                    {\footnotesize\ttfamily{lintao@ihep.ac.cn}}}
+                    {Lin Tao}
+}
+\institute{IHEP}
+
+\maketitle
+
+\begin{frame}
+    \frametitle{OUTLINE}
+    \tableofcontents
+\end{frame}
+
+\section{GenTools}
+    \input{sub_gentools.tex}
+\section{GenDecay}
+    \input{sub_gendecays.tex}
+\section{Generate in any Volume}
+    \input{sub_anyvolume.tex}
+\section*{end}
+\begin{frame}
+    \begin{center}
+        \LARGE Q \& A
+    \end{center}
+\end{frame}
+
+\end{document}
