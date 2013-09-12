@@ -4,4 +4,32 @@
     \end{center}
 \end{frame}
 
-
+\begin{frame}
+    \frametitle{Generate in any Volume}
+    \begin{itemize}
+        \item Affine Transformation between global and local volumes.
+            \footnote{http://en.wikipedia.org/wiki/Affine\_transformation}
+        \item Position and Momentum should be considered.
+        \item Now, we can calculate the transformation according to 
+              the full path of Physical Volume.
+        \item To avoid the too much calculation, we cache these values.
+        \item Caveats
+            \begin{itemize}
+                \item The path must be complete.
+                \item Can't handle the volumes with same name 
+                        but different copyno.
+                \item Depends on Geant4 Kernel.
+            \end{itemize}
+        \item other implementations
+            \begin{itemize}
+                \item In GenTools, the transformer is using DetDesc in Gaudi.
+                \item ROOT also supply these utilities.
+                \item Their basic ideas are same: Calculate the affine
+                    transformation between mother and daughter.
+                \item But their interfaces seems more powerful.
+            \end{itemize}
+        \item We need a more flexible service and some utilities 
+            to supply the geometry infomation of the detector.
+            
+    \end{itemize}
+\end{frame}
