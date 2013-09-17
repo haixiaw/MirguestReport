@@ -4,7 +4,11 @@
   \usepackage{calc} 
   \usepackage{times}
   \usepackage{amsmath,amsthm, amssymb, latexsym}
+  \usepackage{adjustbox}
   \boldmath
+
+  \usepackage{tikz}
+  \usetikzlibrary{shapes,arrows,decorations.text}
 
   \usepackage[english]{babel}
   \usepackage[latin1]{inputenc}
@@ -139,9 +143,7 @@ Dataset-based Data Transfer System will be shown.
             \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
 
 \begin{myblock}{The workflow of Transfer System}
-    \begin{itemize}
-        \item Hello
-    \end{itemize}
+    \input{sub_workflow.tex}
 \end{myblock}
 
             \end{beamercolorbox}

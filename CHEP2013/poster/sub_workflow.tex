@@ -1,0 +1,39 @@
+% Define block styles
+\begin{center}
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=4em, text centered, rounded corners]
+\tikzstyle{hugeBlock} = [rectangle, draw, fill=blue!20,
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex, line width=.3em]
+
+
+\begin{tikzpicture}[node distance = 2cm, auto]
+    \node [block] (user) {User};
+    \node [block, right of=user, node distance=10cm] (transReqSvc) {Transfer Request Service};
+    \node [block, below of=user, node distance=5cm] (DFC) {DFC};
+    \node [block, right of=DFC, node distance=10cm] (datasetSvc) {Dataset Service};
+    \node [block, right of=transReqSvc, node distance=10cm, yshift=-2.5cm] (Database) {Database};
+    \node [block, right of=Database, node distance=10cm] (transAgent) { Transfer Agent};
+    \path[line,<->, postaction={
+                    decorate,
+                    decoration={
+                        raise=1ex,
+                        text along path,
+                        text align=center,
+                        text={2},
+                    }
+        }](user) -- (transReqSvc);
+    \path[line,->, postaction={
+                    decorate,
+                    decoration={
+                        raise=1ex,
+                        text along path,
+                        text align=center,
+                        text={1},
+                    }
+        }] (user) -- (DFC);
+    \path[line,->](DFC) -- (datasetSvc);
+    \path[line,<->](transReqSvc) -- (Database);
+    \path[line,<->](datasetSvc) -- (Database);
+    \path[line,<->](Database) -- (transAgent);
+\end{tikzpicture}
+\end{center}
