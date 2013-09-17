@@ -34,6 +34,14 @@
     \path[line,->](DFC) -- (datasetSvc);
     \path[line,<->](transReqSvc) -- (Database);
     \path[line,<->](datasetSvc) -- (Database);
-    \path[line,<->](Database) -- (transAgent);
+    \path[line,<->,postaction={
+                    decorate,
+                    decoration={
+                        raise=1ex,
+                        text along path,
+                        text align=center,
+                        text={3},
+                    }
+        }](Database) -- (transAgent);
 \end{tikzpicture}
 \end{center}
