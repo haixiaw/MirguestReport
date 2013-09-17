@@ -16,6 +16,16 @@
   \institute{Institute of High Energy Physics}
   \date{Oct. 14th-18th, 2013}
 
+% Create a counter
+\newcounter{blockcounter}
+\setcounter{blockcounter}{0}
+
+\newenvironment{myblock}[1]{
+    \begin{block}{\stepcounter{blockcounter}\arabic{blockcounter} #1}
+} {
+    \end{block}
+}
+
 \begin{document}
 
 \begin{frame}{}
@@ -26,6 +36,14 @@
     \begin{column}{.95\textwidth}
     \begin{beamercolorbox}[wd=\textwidth]{postercolumn}
 \begin{block}{Abstract}
+Data Transfer is an essential part in grid.
+In the BESIII experiment, the result of Monte Carlo Simulation should 
+be transfered back from other sites to IHEP and the DST files for physics analysis 
+should be tranfered from IHEP to other sites. A robust transfer system should 
+make sure all data are transfered correctly.
+In this poster, the design and implementation of a 
+Dataset-based Data Transfer System will be shown.
+
 \end{block}
     \end{beamercolorbox}
     \end{column}
@@ -37,12 +55,81 @@
         % column 1
         \begin{column}{.49\textwidth}
             \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
-
-\begin{block}{Introduction}
+                
+\begin{myblock}{BESIII experiment}
     \begin{itemize}
-        \item Hi, World
+        \item BESIII experiment is a general purpose experiment
+              for studying electron-positron collisions at BEPCII.
+        \item Since spring 2009, large scale raw data has produced.
+        \item The BESIII data production uses both 
+              a local cluster model and a distributed computing model.
+        \item DIRAC is a solution for the distributed computing.
     \end{itemize}
-\end{block}
+\end{myblock}
+
+\begin{myblock}{Why need a dataset-based Transfer System?}
+    \begin{itemize}
+        \item The result of Monte Carlo Simulation (or Reconstruction)
+              should be transfered back from other sites to IHEP.
+        \item The files for physics analysis should be transfered
+              from IHEP to others sites.
+        \item If there is a transfer system:
+            \begin{itemize}
+                \item the user don't need to wait and monitor the status;
+                \item user can retransfer failed files easily.
+                \item the administrator can monitor the status of the sites
+                      and analysis these status.
+            \end{itemize}
+    \end{itemize}
+\end{myblock}
+
+\begin{myblock}{Developing in DIRAC \& BESDIRAC}
+    \begin{itemize}
+        \item The DIRAC (Distributed Infrastructure with Remote Agent Control)
+              project is a complete Grid solution for a community of users
+              needing access to distributed computing resources. 
+              {\em from diracgrid.org}
+        \item DIRAC consists of cooperation distributed {\em services}
+              and light-weight {\em agents} delivering the workload to 
+              the Grid Resources.
+        \item We can {\em reuse} the most functionalities supplied by DIRAC.
+        \item BESDIRAC is an extension to DIRAC for BESIII specified.
+    \end{itemize}
+\end{myblock}
+
+\begin{myblock}{DIRAC Architecture}
+    \begin{columns}
+        \column{.6\linewidth}
+            \includegraphics[width=\textwidth,keepaspectratio]{figures/DIRAC_Architecture.png}
+        \column{.4\linewidth}
+            DIRAC follows the {\tt Service Oriented Architecture (SOA)}
+            paradigm, accompanied by a network of lightweight distribued
+            agents which animate the system.
+            
+            \begin{itemize}
+                \item User Interfaces
+                \item Services
+                \item Agents
+                \item Resources
+            \end{itemize}
+    \end{columns}
+\end{myblock}
+
+\begin{myblock}{Members in Transfer System}
+    \begin{itemize}
+        \item In the transfer system, we have:
+        \begin{description}
+            \item[Transfer Agent] is the scheduler to create the transfer
+                 processes.
+            \item[Tranfer Request Service] is to create, kill, retransfer
+                 and monitor the transfer requests.
+            \item[Dataset Service] is to create and show the dataset.
+        \end{description}
+        \item In Dirac File Catalog, dataset is dynamic.
+        \item Dataset Service is a temporary solution for the static
+              dataset.
+    \end{itemize}
+\end{myblock}
 
             \end{beamercolorbox}
         \end{column}
@@ -51,11 +138,11 @@
         \begin{column}{.49\textwidth}
             \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
 
-\begin{block}{Introduction}
+\begin{myblock}{The workflow of Transfer System}
     \begin{itemize}
-        \item Hi
+        \item Hello
     \end{itemize}
-\end{block}
+\end{myblock}
 
             \end{beamercolorbox}
         \end{column}
