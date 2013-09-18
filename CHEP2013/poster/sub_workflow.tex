@@ -11,7 +11,9 @@
     \node [block, right of=user, node distance=10cm] (transReqSvc) {Transfer Request Service};
     \node [block, below of=user, node distance=5cm] (DFC) {DFC};
     \node [block, right of=DFC, node distance=10cm] (datasetSvc) {Dataset Service};
-    \node [block, right of=transReqSvc, node distance=10cm, yshift=-2.5cm] (Database) {Database};
+    \node [block, right of=transReqSvc, node distance=10cm, yshift=-2.5cm, 
+            text width=6em]
+                                                    (Database) {TransferDB};
     \node [block, right of=Database, node distance=10cm] (transAgent) { Transfer Agent};
     \path[line,<->, postaction={
                     decorate,

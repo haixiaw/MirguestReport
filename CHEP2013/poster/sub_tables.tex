@@ -3,6 +3,7 @@
     \tikzstyle{mytable} = [rectangle, draw, text centered,
         %rectangle split, rectangle split parts=2
     ]
+    \tikzstyle{line} = [draw, -latex, line width=.1em]
 
 \begin{tikzpicture}
     \node[mytable](transreq) {
@@ -10,8 +11,35 @@
         \textbf{Transfer Request}
         \\
         \hline
+        id \\
+        username \\
+        dataset \\
+        srcSE \\
+        dstSE \\
+        protocol \\
+        submit\_time \\
+        status \\
         \end{tabular}
     };
+    \node[mytable, right of=transreq, node distance=15cm](transfilelist) {
+        \begin{tabular}{l}
+        \textbf{Transfer File List}
+        \\
+        \hline
+        id \\
+        LFN \\
+        trans\_req\_id \\
+        start\_time \\
+        finish\_time \\
+        status \\
+        error
+        \end{tabular}
+
+    };
+    \path[line,-] (transreq.east)++(0,4.5) -- ++(2, 0.0) 
+                            |- ++(2,-3.9)
+
+              ;
 \end{tikzpicture}
 
 \end{center}
