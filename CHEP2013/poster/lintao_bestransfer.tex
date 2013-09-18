@@ -156,6 +156,29 @@ Dataset-based Data Transfer System will be shown.
     \input{sub_tables.tex}
 \end{myblock}
 
+\begin{myblock}{Transfer Agent}
+    \begin{itemize}
+        \item In {\tt DIRAC}, {\tt AgentModule} is the base class for all {\tt
+            Agent}s. The derived classes should implement:
+        \begin{itemize}
+            \item {\tt initialize}
+            \item {\tt execute}
+            \item {\tt finalize}
+        \end{itemize}
+        \item {\tt TransferAgent} implements the {\tt non-blocking}
+              scheduler in the {\tt execute} method.
+        \item In fact, we create several {\tt sub processes} to run the 
+                transfer commands. The scheduler uses the {\tt async I/O}
+                to communicate with the {\tt sub processes}.
+        \item To test more easily, we create a standard module {\tt helper}.
+              It just uses the {\tt TransferDB} and some basic services supplied
+              by {\tt DIRAC}, such as the {\tt Configuration Service}.
+              So, we don't need to restart our agent to test the program.
+        \item To support multiple transfer protocols, we use a {\tt
+                TransferFactory} to create {\tt TransferWorker}s.
+    \end{itemize}
+\end{myblock}
+
             \end{beamercolorbox}
         \end{column}
     \end{columns}
