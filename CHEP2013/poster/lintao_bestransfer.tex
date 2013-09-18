@@ -170,10 +170,10 @@ Dataset-based Data Transfer System will be shown.
         \item In fact, we create several {\tt sub processes} to run the 
                 transfer commands. The scheduler uses the {\tt async I/O}
                 to communicate with the {\tt sub processes}.
-        \item To test more easily, we create a standard module {\tt helper}.
-              It just uses the {\tt TransferDB} and some basic services supplied
-              by {\tt DIRAC}, such as the {\tt Configuration Service}.
-              So, we don't need to restart our agent to test the program.
+        %\item To test more easily, we create a standard module {\tt helper}.
+        %      It just uses the {\tt TransferDB} and some basic services supplied
+        %      by {\tt DIRAC}, such as the {\tt Configuration Service}.
+        %      So, we don't need to restart our agent to test the program.
         \item To support multiple transfer protocols, we use a {\tt
                 TransferFactory} to create {\tt TransferWorker}s.
     \end{itemize}
@@ -181,6 +181,23 @@ Dataset-based Data Transfer System will be shown.
 
 \begin{myblock}{Transfer Factory}
     \input{sub_transfactory.tex}
+\end{myblock}
+
+\begin{myblock}{Web Portal and Accounting}
+    \begin{itemize}
+        \item The web portal and accounting are supplied by DIRAC. We can easily extend
+              the functionalities.
+        \item We define a new accounting type which record the transfer
+                information.
+    \end{itemize}
+    \begin{columns}
+        \begin{column}{.45\textwidth}
+            \includegraphics[width=\textwidth,keepaspectratio]{figures/transreqlist-with-kill-retransfer.png}
+        \end{column}
+        \begin{column}{.45\textwidth}
+            \includegraphics[width=\textwidth,keepaspectratio]{figures/acct-throughput-last-week.png}
+        \end{column}
+    \end{columns}
 \end{myblock}
 
             \end{beamercolorbox}
