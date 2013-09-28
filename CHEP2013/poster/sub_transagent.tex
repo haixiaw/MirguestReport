@@ -1,4 +1,7 @@
 \begin{center}
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+                        text width=4.5em, text badly centered, node distance=3cm, inner
+                        sep=0pt]
 \tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=4em, text centered, rounded corners]
 \tikzstyle{line} = [draw, -latex, line width=.3em]
 
@@ -26,12 +29,54 @@
 
     % in PART I
     % * check status of the worker in DB
+        \node [block, right of=part1, node distance=8cm]
+            (statusInDB) {check worker status in DB};
     % * check terminate or not
+        \node [decision, right of=statusInDB, node distance=7cm]
+            (terminateOrNot) {Termiated?};
     % * NO
     %   + dump info
     % * Yes
     %   + remove worker from queue
+        \node [block, right of=terminateOrNot, node distance=7cm]
+            (rmInQueue) {Remove worker in the Queue};
     %   + handle exit code
+        \node [block, right of=rmInQueue, node distance=7cm]
+            (exitCode) {Handle exit code};
     %   + update status
+        \node [block, below of=exitCode, node distance=7cm]
+            (updateStatus) {Update DB};
+    % * dummy object
+        \node [below of=terminateOrNot, node distance=7cm]
+            (dummyObj){};
+
+    % LINE
+    % * part1 -> statusInDB
+        \path[line,->]
+            (part1) -- (statusInDB);
+    % * statusInDB -> terminateOrNot
+        \path[line,->]
+            (statusInDB) -- (terminateOrNot);
+    % * terminateOrNot -> dummyObj
+        \path[line,-]
+            (terminateOrNot.south) -- node{No}(dummyObj.center);
+    % * updateStatus -> dummyObj
+        \path[line,-]
+            (updateStatus.west) -- (dummyObj.center);
+    % * terminateOrNot -> rmInQueue
+        \path[line,->]
+            (terminateOrNot) -- node{Yes}(rmInQueue);
+    % * rmInQueue -> exitCode
+        \path[line,->]
+            (rmInQueue) -- (exitCode);
+    % * exitCode -> updateStatus
+        \path[line,->]
+            (exitCode) -- (updateStatus);
+
+    % * dummy object 
+        \path[line,<-]
+             (part1.east)+(0,-1) 
+             -| ++(1,-7)
+             -- node{RETURN} (dummyObj.center);
 \end{tikzpicture}
 \end{center}
