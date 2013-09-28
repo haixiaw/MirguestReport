@@ -1,7 +1,7 @@
 \begin{center}
 \tikzstyle{decision} = [diamond, draw, fill=blue!20, 
-                        text width=4.5em, text badly centered, node distance=3cm, inner
-                        sep=0pt]
+                        text width=4.5em, text centered, 
+                        node distance=3cm, inner sep=0pt]
 \tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=4em, text centered, rounded corners]
 \tikzstyle{line} = [draw, -latex, line width=.3em]
 
@@ -19,7 +19,7 @@
         \node [block] 
             (part1) {check existing worker};
     % PART II
-        \node [block, below of=part1, node distance =10cm] 
+        \node [block, below of=part1, node distance =10.5cm] 
             (part2) {add new worker};
 
     % LINE part1 -> part2
@@ -27,7 +27,7 @@
             (part1) -- (part2);
     % LINE part2 -> part1
         \path[line,->]
-            (part2.south) |- ++(-5.5,-1.2)
+            (part2.south) |- ++(-5.5,-0.8)
             -- ++(0, 16.5)
             -| (part1.north);
 
@@ -93,5 +93,61 @@
             draw=black!50, dashed]
             (g) rectangle (h);
         \end{pgfonlayer}
+
+    % in PART II
+    % * IDLE
+        \node [decision, right of=part2, node distance=8cm, aspect=2,
+               inner sep=-5pt]
+            (idle) {Idle?};
+    % * Has New Request
+        \node [decision, right of=idle, node distance=10cm, aspect=2,
+               text width=5em, inner sep=-5pt]
+            (newreq) {any reqs?};
+    % * create worker
+        \node [block, right of=newreq, node distance=10cm]
+        (createworker) {create worker};
+
+    % * dummy obj
+        \node [below of=idle, node distance=3cm]
+            (dummyObj2) {};
+        \node [below of=newreq, node distance=3cm]
+            (dummyObj3) {};
+
+    % LINE
+    % * part2 -> idle
+        \path[line,->]
+            (part2) -- (idle);
+    % * idle -> newreq
+        \path[line,->]
+            (idle) -- node{Yes}(newreq);
+    % * newreq -> createworker
+        \path[line,->]
+            (newreq) -- node{Yes}(createworker);
+    % * idle -> dummy
+        \path[line,-]
+            (idle) -- node{No}(dummyObj2.center);
+    % * newreq -> dummy
+        \path[line,-]
+            (newreq) -- node{No}(dummyObj3.center);
+    % * createworker -> dummy
+        \path[line,-]
+            (createworker) |- (dummyObj2.center);
+    % * dummy -> part2
+        \path[line,<-]
+            (part2.east)+(0,-1)
+            -| ++ (1, -3)
+            -- (dummyObj2.center);
+
+    % PART II Layer background
+        \begin{pgfonlayer}{background}
+            \path (idle.north west)+(-1.8,1.3) node (g) {};
+            %\path (bw.east |- syscomb.south)+(0.5,-1.5) node (h) {};
+            \path (createworker.south east)+(0.5,-1.8) node (h) {};
+
+            \path[fill=yellow!20,rounded corners,
+            draw=black!50, dashed]
+            (g) rectangle (h);
+        \end{pgfonlayer}
+
 \end{tikzpicture}
 \end{center}
