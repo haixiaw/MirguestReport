@@ -73,27 +73,44 @@ Dataset-based Data Transfer System will be shown.
         \item The BESIII data production uses both 
               a local cluster model and a distributed computing model.
         \item DIRAC is a solution for the distributed computing.
+            \begin{itemize}
+                \item Monte Carlo production in remote sites; 
+                \item Reconstruction in IHEP;
+            \end{itemize}
     \end{itemize}
 \end{myblock}
 
 \begin{myblock}{Why need a dataset-based Transfer System?}
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
     \begin{itemize}
         %\item The result of Monte Carlo Simulation (or Reconstruction)
         %      should be transfered back from other sites to IHEP.
         %\item The files for physics analysis should be transfered
         %      from IHEP to others sites.
-        \item The result of Monte Carlo Simulation
-        \item The files for physics analysis
+        \item What will be transferred?
+        \begin{itemize}
+            \item The result of Monte Carlo Simulation
+            \item The files for physics analysis
+        \end{itemize}
+        \item Real big data!
+        \item But, poor network connectivity!
+    \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+    \begin{itemize}
         \item If there is a transfer system:
             \begin{itemize}
-                \item the user don't need to wait and monitor the status;
+                \item user don't wait any more;
                 \item user can retransfer failed files easily.
                 %\item the administrator can monitor the status of the sites
                 %      and analysis these status.
             \end{itemize}
     \end{itemize}
+        \end{column}
+    \end{columns}
 \end{myblock}
-
+%
 \begin{myblock}{Developing in DIRAC \& BESDIRAC}
     \begin{itemize}
         %\item The DIRAC (Distributed Infrastructure with Remote Agent Control)
@@ -106,11 +123,11 @@ Dataset-based Data Transfer System will be shown.
         \item We can {\em reuse} the most functionalities supplied by DIRAC.
         \item BESDIRAC is an extension to DIRAC for BESIII specified.
     \end{itemize}
-\end{myblock}
-
-\begin{myblock}{DIRAC Architecture}
+%\end{myblock}
+%
+%\begin{myblock}{DIRAC Architecture}
     \begin{columns}
-        \column{.6\linewidth}
+        \column{.55\linewidth}
             \includegraphics[width=\textwidth,keepaspectratio]{figures/DIRAC_Architecture.png}
         \column{.4\linewidth}
             DIRAC follows the {\tt Service Oriented Architecture (SOA)}
