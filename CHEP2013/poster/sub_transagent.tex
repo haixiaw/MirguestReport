@@ -44,10 +44,10 @@
         \node [block, right of=rmInQueue, node distance=7cm]
             (exitCode) {Handle exit code};
     %   + update status
-        \node [block, below of=exitCode, node distance=7cm]
+        \node [block, below of=exitCode, node distance=6cm]
             (updateStatus) {Update DB};
     % * dummy object
-        \node [below of=terminateOrNot, node distance=7cm]
+        \node [below of=terminateOrNot, node distance=6cm]
             (dummyObj){};
 
     % LINE
@@ -76,7 +76,7 @@
     % * dummy object 
         \path[line,<-]
              (part1.east)+(0,-1) 
-             -| ++(1,-7)
+             -| ++(1,-6)
              -- node{RETURN} (dummyObj.center);
 \end{tikzpicture}
 \end{center}
