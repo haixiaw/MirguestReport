@@ -25,9 +25,11 @@
 \setcounter{blockcounter}{0}
 
 \newenvironment{myblock}[1]{
+    \vfill
     \begin{block}{\stepcounter{blockcounter}\arabic{blockcounter} #1}
 } {
     \end{block}
+    \vfill
 }
 
 \begin{document}
@@ -35,7 +37,7 @@
 \begin{frame}{}
     
 % Abstract    
-\begin{columns}
+\begin{columns}[c]
 
     \begin{column}{.95\textwidth}
     \begin{beamercolorbox}[wd=\textwidth]{postercolumn}
@@ -53,11 +55,14 @@ Dataset-based Data Transfer System will be shown.
     \end{column}
 \end{columns}
 
+% Content
 
-    \begin{columns}
+    \begin{columns}[c]
+        \begin{column}{.01\textwidth}
+        \end{column}
         % --------------------------------------------------------------------
         % column 1
-        \begin{column}{.49\textwidth}
+        \begin{column}{.48\textwidth}
             \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
                 
 \begin{myblock}{BESIII experiment}
@@ -150,8 +155,11 @@ Dataset-based Data Transfer System will be shown.
             \end{beamercolorbox}
         \end{column}
         % --------------------------------------------------------------------
+        \begin{column}{.01\textwidth}
+        \end{column}
+        % --------------------------------------------------------------------
         % column 2
-        \begin{column}{.49\textwidth}
+        \begin{column}{.48\textwidth}
             \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
 
 
@@ -227,6 +235,10 @@ Dataset-based Data Transfer System will be shown.
 
             \end{beamercolorbox}
         \end{column}
+        % --------------------------------------------------------------------
+        \begin{column}{.01\textwidth}
+        \end{column}
+        % --------------------------------------------------------------------
     \end{columns}
 \end{frame}
 \end{document}
