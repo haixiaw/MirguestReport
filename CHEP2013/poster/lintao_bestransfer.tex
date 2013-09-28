@@ -64,7 +64,7 @@ Dataset-based Data Transfer System will be shown.
     \begin{itemize}
         \item BESIII experiment is a general purpose experiment
               for studying electron-positron collisions at BEPCII.
-        \item Since spring 2009, large scale raw data has produced.
+        %\item Since spring 2009, large scale raw data has produced.
         \item The BESIII data production uses both 
               a local cluster model and a distributed computing model.
         \item DIRAC is a solution for the distributed computing.
@@ -73,26 +73,28 @@ Dataset-based Data Transfer System will be shown.
 
 \begin{myblock}{Why need a dataset-based Transfer System?}
     \begin{itemize}
-        \item The result of Monte Carlo Simulation (or Reconstruction)
-              should be transfered back from other sites to IHEP.
-        \item The files for physics analysis should be transfered
-              from IHEP to others sites.
+        %\item The result of Monte Carlo Simulation (or Reconstruction)
+        %      should be transfered back from other sites to IHEP.
+        %\item The files for physics analysis should be transfered
+        %      from IHEP to others sites.
+        \item The result of Monte Carlo Simulation
+        \item The files for physics analysis
         \item If there is a transfer system:
             \begin{itemize}
                 \item the user don't need to wait and monitor the status;
                 \item user can retransfer failed files easily.
-                \item the administrator can monitor the status of the sites
-                      and analysis these status.
+                %\item the administrator can monitor the status of the sites
+                %      and analysis these status.
             \end{itemize}
     \end{itemize}
 \end{myblock}
 
 \begin{myblock}{Developing in DIRAC \& BESDIRAC}
     \begin{itemize}
-        \item The DIRAC (Distributed Infrastructure with Remote Agent Control)
-              project is a complete Grid solution for a community of users
-              needing access to distributed computing resources. 
-              {\em from diracgrid.org}
+        %\item The DIRAC (Distributed Infrastructure with Remote Agent Control)
+        %      project is a complete Grid solution for a community of users
+        %      needing access to distributed computing resources. 
+        %      {\em from diracgrid.org}
         \item DIRAC consists of cooperation distributed {\em services}
               and light-weight {\em agents} delivering the workload to 
               the Grid Resources.
@@ -135,13 +137,6 @@ Dataset-based Data Transfer System will be shown.
     \end{itemize}
 \end{myblock}
 
-            \end{beamercolorbox}
-        \end{column}
-        % --------------------------------------------------------------------
-        % column 2
-        \begin{column}{.49\textwidth}
-            \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
-
 \begin{myblock}{The workflow of Transfer System}
     \input{sub_workflow.tex}
     \begin{enumerate}
@@ -152,9 +147,17 @@ Dataset-based Data Transfer System will be shown.
     \end{enumerate}
 \end{myblock}
 
-\begin{myblock}{TransferDB}
-    \input{sub_tables.tex}
-\end{myblock}
+            \end{beamercolorbox}
+        \end{column}
+        % --------------------------------------------------------------------
+        % column 2
+        \begin{column}{.49\textwidth}
+            \begin{beamercolorbox}[center,wd=\textwidth]{postercolumn}
+
+
+%\begin{myblock}{TransferDB}
+%    \input{sub_tables.tex}
+%\end{myblock}
 
 \begin{myblock}{Transfer Agent}
     \begin{itemize}
@@ -185,10 +188,11 @@ Dataset-based Data Transfer System will be shown.
 
 \begin{myblock}{Web Portal and Accounting}
     \begin{itemize}
-        \item The web portal and accounting are supplied by DIRAC. We can easily extend
-              the functionalities.
-        \item We define a new accounting type which record the transfer
-                information.
+        %\item The web portal and accounting are supplied by DIRAC. We can easily extend
+        %      the functionalities.
+        %\item We define a new accounting type which record the transfer
+        %        information.
+        \item Extensions can integrate with DIRAC easily.
     \end{itemize}
     \begin{columns}
         \begin{column}{.45\textwidth}
@@ -198,6 +202,9 @@ Dataset-based Data Transfer System will be shown.
             \includegraphics[width=\textwidth,keepaspectratio]{figures/acct-throughput-last-week.png}
         \end{column}
     \end{columns}
+\end{myblock}
+
+\begin{myblock}{Conclusion}
 \end{myblock}
 
             \end{beamercolorbox}
