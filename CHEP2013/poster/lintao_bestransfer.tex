@@ -101,7 +101,7 @@ Dataset-based Data Transfer System will be shown.
     \begin{itemize}
         \item If there is a transfer system:
             \begin{itemize}
-                \item user don't wait any more;
+                \item user don't need to wait any more;
                 \item user can retransfer failed files easily.
                 %\item the administrator can monitor the status of the sites
                 %      and analysis these status.
@@ -143,20 +143,20 @@ Dataset-based Data Transfer System will be shown.
     \end{columns}
 \end{myblock}
 
-\begin{myblock}{Members in Transfer System}
-    \begin{itemize}
-        \item In the transfer system, we have:
+\begin{myblock}{Overview of Transfer System}
+    %\begin{itemize}
+    %    \item In the transfer system, we have:
         \begin{description}
-            \item[Transfer Agent] is the scheduler to create the transfer
-                 processes.
-            \item[Tranfer Request Service] is to create, kill, retransfer
+            \item[Transfer Agent] is the scheduler.
+            \item[Transfer Request Service] is to create, kill, retransfer
                  and monitor the transfer requests.
             \item[Dataset Service] is to create and show the dataset.
+            \item[Transfer DB] is the shared memory.
         \end{description}
-        \item In Dirac File Catalog, dataset is dynamic.
-        \item Dataset Service is a temporary solution for the static
-              dataset.
-    \end{itemize}
+        %\item In Dirac File Catalog, dataset is dynamic.
+        %\item Dataset Service is a temporary solution for the static
+        %      dataset.
+    %\end{itemize}
 \end{myblock}
 
 \begin{myblock}{The workflow of Transfer System}
