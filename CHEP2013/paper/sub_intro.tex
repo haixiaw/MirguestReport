@@ -1,1 +1,29 @@
 \section{Introduction}
+The BESIII experiment at the BEPCII collider has accumulated
+the world's largest datasets at charm threshold.
+
+The currently computing and storage resources for BESIII 
+experiment consist of about 3400 CPU cores, with 2.4 PB of disk
+storage and 4 PB of tape storage at the central IHEP site.
+% refer to catriana
+The experiment-organized activity, mostly performed at IHEP
+batch farm. For mass production of simulated events,
+each batch job generates a single file containing
+50000 events. It takes about 14 to 19 hours. The output
+is a ROOT file whose size is about 255 to 350 MB.
+For the rectronstruction of simulated RAW events,
+it takes about 4 to 6 hours. The input files are
+250MB to 350MB simulated events and 1.5GB to 2GB random trigger.
+The output file is a 900MB ROOT file.
+The resource at IHEP is not enough.
+An alternative distributed solution is required.
+% refer to fabio: 
+% http://indico.ihep.ac.cn/getFile.py/access?contribId=6&sessionId=1&resId=0&materialId=slides&confId=2779
+
+The basic computing model is proposed to incorporate grid and
+cloud computing resources with the existing IHEP batch farm.
+IHEP central site do the raw data processing, MC production
+and analysis. The remote sites do part of MC production
+and analysis at peak time.
+% refer to xiaomei
+% http://indico.ihep.ac.cn/getFile.py/access?contribId=18&sessionId=4&resId=1&materialId=slides&confId=3161
