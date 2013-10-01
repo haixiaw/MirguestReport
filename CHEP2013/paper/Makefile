@@ -1,10 +1,16 @@
-all: lintao_main.pdf
-	@xdg-open $^
-lintao_main.pdf: lintao_main.dvi
-	@dvipdfmx $^
+SRCS=$(wildcard sub_*.tex)
+srcmain=lintao_main.tex
+outpdf=$(patsubst %.tex, %.pdf, $(srcmain))
+outdvi=$(patsubst %.tex, %.dvi, $(srcmain))
+all: $(outpdf) $(SRCS)
+	@xdg-open $<
+$(outpdf): $(outdvi) $(SRCS)
+	@dvipdfmx $<
 
-lintao_main.dvi: lintao_main.tex
-	@latex $^
-	@latex $^
+$(outdvi): $(srcmain) $(SRCS)
+	@latex $<
+	@latex $<
 
-lintao_main.tex: $(wildcard sub_*.tex)
+$(srcmain): $(SRCS)
+
+.PHONY: all
