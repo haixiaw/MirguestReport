@@ -66,9 +66,18 @@ The transfer system contains:
           User Interface for user and manager.
 \end{itemize}
 
-The workflow is shown in 
+The workflow is shown in Figure \ref{fig:workflow} and described as follows.
 \begin{figure}
     %\centering
     \input{sub_workflow.tex}
     \caption{Workflow of transfer system} \label{fig:workflow}
 \end{figure}
+
+\begin{enumerate}
+\item The user create a dataset in DFC first.
+\item Then, user submit the transfer request with dataset name,
+source SE, destination SE and transfer protocol.
+These infomation will be saved in the transfer DB via
+the transfer request service.
+\item The transfer agent will transfer these files.
+\end{enumerate}
