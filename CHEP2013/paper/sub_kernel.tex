@@ -19,4 +19,44 @@ is immutable. We use an table to save these static files.
 But now, DIRAC support the dataset management in DFC, so the dataset
 service in our system is deprecated.
 \subsection{Transfer Agent}
+
+The Transfer Agent implements a non-blocking scheduler.
+It uses python's standard library {\tt subprocess} to 
+create the real transfer worker in a new process.
+Then it use async I/O to communicate with these sub processes.
+The output and status of the sub process will be used 
+to indicate whether the transfer is OK or not.
+
+The workflow of the transfer agent is shown in Figure \ref{fig:agent}
+and described as follows.
+\begin{figure}
+    %\centering
+    \input{sub_transagent.tex}
+    \caption{Workflow of transfer agent} \label{fig:agent}
+\end{figure}
+
+The scheduler check the existing worker first.
+It can be divided into several steps:
+\begin{enumerate}
+    \item We will check the status in database first.
+          If user kills a transfer worker, the state in
+          database will become ``kill''.
+          If the state is ``kill'', the scheduler will
+          send a signal to the sub process to stop the
+          transfer.
+    \item Then, check the process is terminated or not.
+          If it is still running, we will just return.
+          If it is terminated, we need to do some other things.
+    \item The worker will be removed from the queue.
+    \item Handle the exit code to check the transfer is OK or not.
+    \item Then we update the status in the database 
+          and commit the entry in accounting system.
+\end{enumerate}
+
+Then, the scheduler will add new worker if it is possible.
+It will check whether the worker is idle and there are new requests.
+If both are true, we will create the new worker.
+Here, we will initialize the transfer worker and use the accounting
+system to create a new entry with some informations.
+
 \subsection{Transfer Database}
