@@ -59,4 +59,14 @@ If both are true, we will create the new worker.
 Here, we will initialize the transfer worker and use the accounting
 system to create a new entry with some informations.
 
+% Transfer Factory
+
 \subsection{Transfer Database}
+
+In the transfer system, transfer request service and transfer agent
+share the data using transfer database. In the database, we maintain
+two tables. One is for the transfer requests and another is for the 
+files in the transfer requests. They are show in Table.
+
+% table for TransferRequest and TransferFileList
+\input{sub_tables.tex}
