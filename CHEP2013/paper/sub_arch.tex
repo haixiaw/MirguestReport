@@ -81,3 +81,14 @@ These infomation will be saved in the transfer DB via
 the transfer request service.
 \item The transfer agent will transfer these files.
 \end{enumerate}
+
+In the client side, both command line scripts and web portal are supported.
+The command line scripts are using python. The web portal is using 
+JavaScript to provide an interactive interface. The functionalities
+include transfer requests management, dataset management and the 
+accounting.
+
+In the server side, the services and agents are controlled by runit.
+The web portal uses Pylons as the web framework.
+The Pylons redirect the HTTP requests to the DIRAC services and 
+return the results to the users.
