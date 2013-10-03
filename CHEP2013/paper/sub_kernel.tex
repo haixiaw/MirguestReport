@@ -60,6 +60,12 @@ Here, we will initialize the transfer worker and use the accounting
 system to create a new entry with some informations.
 
 % Transfer Factory
+For flexibility, we use a transfer factory to create transfer workers
+with different protocols. 
+We define an interface {\tt ITransferWorker},
+which will be used by the transfer agent. The derived class should
+implement the interface and construct the command line which will 
+be called when the worker begins to run.
 
 \subsection{Transfer Database}
 
