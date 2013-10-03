@@ -1,5 +1,22 @@
-\section{Trasfer System Kernel}
+\section{Transfer System Kernel}
 
-\subsection{Transfer Request Service}
+\subsection{Transfer Request Service and Dataset Service}
+
+The transfer request service support a basic management which includes:
+\begin{itemize}
+    \item create a new transfer request.
+    \item list the transfer requests.
+    \item show the status of the specific transfer request.
+    \item kill one transfer process in a specific transfer request.
+    \item re-transfer one transfer process.
+\end{itemize}
+The user use a dataset name, source SE and destination SE to create a 
+new request. The user can also specify the protocol to transfer the files.
+
+The dataset management does not support well when we create the transfer 
+system. In our requirement, we need a static dataset whose file list
+is immutable. We use an table to save these static files.
+But now, DIRAC support the dataset management in DFC, so the dataset
+service in our system is deprecated.
 \subsection{Transfer Agent}
 \subsection{Transfer Database}
