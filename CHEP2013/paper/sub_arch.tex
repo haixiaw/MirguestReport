@@ -8,7 +8,7 @@ system for BESIII grid. It was originally started in 2002 as a tool
 to support a large-scale production of Monte-Carlo experiment modelling
 data for the LHCb Collaboration. The DIRAC project provides a 
 complete set of tools to support the whole LHCb data processing.
-It was reorganized to seperate generic and LHCb specific functionality
+It was reorganized to separate generic and LHCb specific functionality
 in 2008-2010.
 % refer to Ricardo 2012-07 IHEP
 
@@ -40,7 +40,7 @@ new code in our system.
 
 Git is choosed as the version control system.
 Not only because DIRAC use it. There are approximately 350
-collaboration members from 52 insitutions in BESIII.
+collaboration members from 52 institutions in BESIII.
 The remote sites in grid will increase and the developers for DIRAC
 will also increase. So the distributed version control system 
 is good at this job.
@@ -52,7 +52,7 @@ The transfer system contains:
 \begin{itemize}
     \item {\tt Transfer Agent} is the scheduler to create transfer worker.
           The transfer worker create a process to do the transfer work.
-    \item {\tt Transfer Request Service} is to manage the trasnfer requests
+    \item {\tt Transfer Request Service} is to manage the transfer requests
           created by users.
     \item {\tt Transfer DB} is the shared memory between the agent and 
           service. It keeps the users' requests and files to be transferred.
@@ -77,7 +77,7 @@ The workflow is shown in Figure \ref{fig:workflow} and described as follows.
 \item The user create a dataset in DFC first.
 \item Then, user submit the transfer request with dataset name,
 source SE, destination SE and transfer protocol.
-These infomation will be saved in the transfer DB via
+These information will be saved in the transfer DB via
 the transfer request service.
 \item The transfer agent will transfer these files.
 \end{enumerate}
