@@ -1,1 +1,33 @@
 \section{Accounting}
+
+The accounting system in DIRAC is flexible. We only need to define 
+what a data type is and how this data will be shown.
+Even though there is a type called {\tt DataOperation} in DIRAC,
+we define our own type. We don't want to mix the data between 
+transfer system and the other systems in DIRAC.
+It is also a try to have our own data type.
+The schema is defined in table \ref{tb:acct}.
+The value fields are grouped by the key fields.
+
+\begin{table}
+    \caption{\label{tb:acct} Schema of the data transfer accounting type}
+    \begin{center}
+        \begin{tabular}{lll}
+            \br
+            fields catalog        &   fields name   & fields type \\
+            \mr
+            \multirow{5}{*}{Key Fields}
+                                  &   User          & VARCHAR(32) \\
+                                  &   Source        & VARCHAR(32) \\
+                                  &   Destination   & VARCHAR(32) \\
+                                  &   Protocol      & VARCHAR(32) \\
+                                  &   FinalStatus   & VARCHAR(32) \\
+            \mr
+            \multirow{3}{*}{Value Fields}
+                                  &   TransferSize  & BIGINT UNSIGNED \\
+                                  &   TransferTime  & FLOAT \\
+                                  &   TransferOK    & INT UNSIGNED \\
+            \br
+        \end{tabular}
+    \end{center}
+\end{table}
