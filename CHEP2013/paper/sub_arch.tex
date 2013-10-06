@@ -3,8 +3,10 @@
 \subsection{DIRAC Framework}
 
 % refer to CHEP2009, DIRAC3
-DIRAC has been adopted as the job management system and data management
-system for BESIII grid. It was originally started in 2002 as a tool
+DIRAC \cite{bib:dirac3} 
+has been adopted as the job management system and data management
+system for BESIII grid \cite{bib:besdfc}. 
+It was originally started in 2002 as a tool
 to support a large-scale production of Monte-Carlo experiment modelling
 data for the LHCb Collaboration. The DIRAC project provides a 
 complete set of tools to support the whole LHCb data processing.
@@ -19,14 +21,15 @@ agents which deliver workload to the resources.
 Modular design applied in various system components allowed to quickly
 introduce new functionality and make component modifications without
 affecting other components.
-Its Secure client/service framework called DISET is full-featured
-to implement these systems.
+Its Secure client/service framework called DISET \cite{bib:diset} 
+is full-featured to implement these systems.
 
 \subsection{The BESDIRAC}
 
 % refer to Catriana
 Like LHCb, there are BESIII specific functionalities in the grid.
-The BESDIRAC is developed to provide these functionalities.
+The BESDIRAC \cite{bib:besdirac} 
+is developed to provide these functionalities.
 BADGER, the BESIII Advanced Data ManaGER, is the first sub-system
 in BESDIRAC. It is implemented based on DIRAC File Catalog(DFC)
 and integrated with DIRAC job management.
@@ -38,7 +41,7 @@ The scalability and flexibility of DIRAC framework make the work
 easy to be done. We don't modify any DIRAC code. We just put the 
 new code in our system.
 
-Git is choosed as the version control system.
+Git \cite{bib:git} is choosed as the version control system.
 Not only because DIRAC use it. There are approximately 350
 collaboration members from 52 institutions in BESIII.
 The remote sites in grid will increase and the developers for DIRAC
@@ -57,10 +60,11 @@ The transfer system contains:
     \item {\tt Transfer DB} is the shared memory between the agent and 
           service. It keeps the users' requests and files to be transferred.
     \item {\tt Dataset Service} is for dataset management. It is 
-          {\em deprecated}. The dataset management will be supported in DIRAC 
+          {\em deprecated}. The dataset management will be supported in DIRAC
           File Catalog.
     \item {\tt Accounting} is to keep the transfer history.
-          It follows the structure in DIRAC Accounting System.
+          It follows the structure in DIRAC Accounting System
+          \cite{bib:diracacct}.
           We can plot the history in the web portal.
     \item {\tt Web Portal} and {\tt command line scripts} are the 
           User Interface for user and manager.
@@ -83,12 +87,14 @@ the transfer request service.
 \end{enumerate}
 
 In the client side, both command line scripts and web portal are supported.
-The command line scripts are using python. The web portal is using 
-JavaScript to provide an interactive interface. The functionalities
+The command line scripts are using python. The web portal 
+\cite{bib:webportal}
+is using JavaScript to provide an interactive interface. The functionalities
 include transfer requests management, dataset management and the 
 accounting.
 
 In the server side, the services and agents are controlled by runit.
-The web portal uses Pylons as the web framework.
+The web portal uses Pylons as the web framework
+\cite{bib:webportal}.
 The Pylons redirect the HTTP requests to the DIRAC services and 
 return the results to the users.
