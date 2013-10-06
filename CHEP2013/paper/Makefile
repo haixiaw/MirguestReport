@@ -3,7 +3,7 @@ srcmain=lintao_main.tex
 outpdf=$(patsubst %.tex, %.pdf, $(srcmain))
 outdvi=$(patsubst %.tex, %.dvi, $(srcmain))
 all: $(outpdf) $(SRCS)
-	@xdg-open $<
+	@xdg-open $< &
 $(outpdf): $(outdvi) $(SRCS)
 	@dvipdfmx $<
 
