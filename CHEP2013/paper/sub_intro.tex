@@ -7,19 +7,29 @@ experiment consist of about 3400 CPU cores, with 2.4 PB of disk
 storage and 4 PB of tape storage at the central IHEP site.
 % refer to catriana
 The experiment-organized activity, mostly performed at IHEP
-batch farm. For mass production of simulated events,
-each batch job generates a single file containing
-50000 events. It takes about 14 to 19 hours. The output
-is a ROOT file whose size is about 255 to 350 MB.
-For the reconstruction of simulated RAW events,
-it takes about 4 to 6 hours. The input files are
-simulated events and 1.5GB to 2GB random trigger.
-The output file is a 900MB ROOT file.
-The resource at IHEP is not enough.
-An alternative distributed solution is required.
+batch farm. The details about mass production can refer to table
+\ref{tab:massprod}.
+\begin{table}[htbp]
+    \caption{\label{tab:massprod}one job in BESIII Mass Production}
+    \begin{center}
+        \begin{tabular}{ll|l}
+\br
+        & Simulation        & Reconstruction \\
+\mr
+events  & 50000             & 50000 \\
+input   & a few parameters  & 255-350MB rtraw + 1.5-2GB Random Trigger \\
+output  & 255-300MB rtraw   & 900MB dst \\
+time    & 14-19 hours       & 4-6 hours \\
+\br
+        \end{tabular}
+    \end{center}
+\end{table}
+
 % refer to fabio: 
 % http://indico.ihep.ac.cn/getFile.py/access?contribId=6&sessionId=1&resId=0&materialId=slides&confId=2779
 
+The resource at IHEP is not enough.
+An alternative distributed solution is required.
 The basic computing model is proposed to incorporate grid and
 cloud computing resources with the existing IHEP batch farm.
 IHEP central site do the raw data processing, MC production
