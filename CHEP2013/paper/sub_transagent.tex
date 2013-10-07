@@ -19,7 +19,7 @@
         \node [block] 
             (part1) {check existing worker};
     % PART II
-        \node [block, below of=part1, node distance =3.05cm] 
+        \node [block, below of=part1, node distance =3.0cm] 
             (part2) {add new worker};
 
     % LINE part1 -> part2
@@ -27,8 +27,8 @@
             (part1) -- (part2);
     % LINE part2 -> part1
         \path[line,->]
-            (part2.south) |- ++(-2.0,-0.4)
-            -- ++(0, 5.2)
+            (part2.south) |- ++(-1.5,-0.3)
+            -- ++(0, 5.0)
             -| (part1.north);
 
     % in PART I
@@ -48,10 +48,10 @@
         \node [block, right of=rmInQueue, node distance=3cm]
             (exitCode) {Handle exit code};
     %   + update status
-        \node [block, below of=exitCode, node distance=1.8cm]
+        \node [block, below of=exitCode, node distance=1.6cm]
             (updateStatus) {Update DB};
     % * dummy object
-        \node [below of=terminateOrNot, node distance=1.8cm]
+        \node [below of=terminateOrNot, node distance=1.6cm]
             (dummyObj){};
 
     % LINE
@@ -80,7 +80,7 @@
     % * dummy object 
         \path[line,<-]
              (part1.east)+(0,-0.5) 
-             -| ++(1,-1.8)
+             -| ++(1,-1.6)
              -- node{RETURN} (dummyObj.center);
 
     % PART I Layer background
