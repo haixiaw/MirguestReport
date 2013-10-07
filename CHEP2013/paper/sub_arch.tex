@@ -43,15 +43,13 @@ easy to be done.
 The transfer system contains:
 
 \begin{itemize}
-    \item {\tt Transfer Agent} is the scheduler to create transfer worker.
-          The transfer worker create a process to do the transfer work.
+    \item {\tt Transfer Agent} is the scheduler to manage transfer worker.
     \item {\tt Transfer Request Service} is to manage the transfer requests
           created by users.
     \item {\tt Transfer DB} is the shared memory between the agent and 
           service. It keeps the users' requests and files to be transferred.
     \item {\tt Dataset Service} is for dataset management. It is 
-          {\em deprecated}. The dataset management will be supported in DIRAC
-          File Catalog.
+          {\em deprecated} because it will be supported in DFC.
     \item {\tt Accounting} is to keep the transfer history.
           It follows the structure in DIRAC Accounting System
           \cite{bib:diracacct}.
