@@ -9,26 +9,23 @@ transfer system and the other systems in DIRAC.
 It is also a try to have our own data type.
 The schema is defined in table \ref{tb:acct}.
 
+
 \begin{table}[htbp]
     \caption{\label{tb:acct} Schema of the data transfer accounting type}
     \begin{center}
-        \begin{tabular}{lll}
-            \br
-            fields catalog        &   fields name   & fields type \\
-            \mr
-            \multirow{5}{*}{Key Fields}
-                                  &   User          & VARCHAR(32) \\
-                                  &   Source        & VARCHAR(32) \\
-                                  &   Destination   & VARCHAR(32) \\
-                                  &   Protocol      & VARCHAR(32) \\
-                                  &   FinalStatus   & VARCHAR(32) \\
-            \mr
-            \multirow{3}{*}{Value Fields}
-                                  &   TransferSize  & BIGINT UNSIGNED \\
-                                  &   TransferTime  & FLOAT \\
-                                  &   TransferOK    & INT UNSIGNED \\
-            \br
+        \begin{tabular}{ll|ll}
+\br
+\multicolumn{2}{c|}{Key Fields} & 
+\multicolumn{2}{|c}{Value Fields}
+\\
+field name    & field type  & field name      & field type \\
+\hline
+User          & VARCHAR(32) &   TransferSize  & BIGINT UNSIGNED \\
+Source        & VARCHAR(32) &   TransferTime  & FLOAT \\
+Destination   & VARCHAR(32) &   TransferOK    & INT UNSIGNED \\
+Protocol      & VARCHAR(32) &                 & \\
+FinalStatus   & VARCHAR(32) &                 & \\
+\br
         \end{tabular}
     \end{center}
 \end{table}
-
