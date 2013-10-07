@@ -15,11 +15,11 @@ new request with optional transfer protocol.
 
 The Transfer Agent implements a non-blocking scheduler.
 It uses python's standard library {\tt subprocess} to 
-create the real transfer worker in a new process.
-Then it use async I/O to communicate with these sub processes.
+create the real transfer worker in a new process
+and uses async I/O to communicate with this process.
 The output and status of the sub process will be used 
 to indicate whether the transfer is OK or not.
-
+%
 The workflow of the transfer agent is shown in Figure \ref{fig:agent}
 and described as follows.
 \begin{figure}
@@ -28,7 +28,8 @@ and described as follows.
     \caption{Workflow of transfer agent} \label{fig:agent}
 \end{figure}
 
-The scheduler check the existing worker first.
+\begin{enumerate}
+\item The scheduler check the existing worker.
 It can be divided into several steps:
 \begin{enumerate}
     \item We will check the status in database first.
@@ -45,13 +46,12 @@ It can be divided into several steps:
     \item Then we update the status in the database 
           and commit the entry in accounting system.
 \end{enumerate}
-
-Then, the scheduler will add new worker if it is possible.
-It will check whether the worker is idle and there are new requests.
-If both are true, we will create the new worker.
+\item The scheduler will add new worker if possible.
+If the worker is idle and there are new requests,
+scheduler will create the new worker.
 Here, we will initialize the transfer worker and use the accounting
 system to create a new entry with some informations.
-
+\end{enumerate}
 % Transfer Factory
 For flexibility, we use a transfer factory to create transfer workers
 with different protocols. 
