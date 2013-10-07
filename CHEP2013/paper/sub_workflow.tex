@@ -8,10 +8,12 @@
 %\adjustbox{max width=\textwidth}{
 \begin{tikzpicture}[node distance = 2cm, auto]
     \node [block] (user) {User};
-    \node [block, right of=user, node distance=4cm] (transReqSvc) {Transfer Request Service};
-    \node [block, below of=user, node distance=1.4cm] (DFC) {DFC};
-    \node [block, right of=DFC, node distance=4cm] (datasetSvc) {Dataset Service};
-    \node [block, right of=transReqSvc, node distance=4cm, yshift=-0.7cm, 
+    \node [block, right of=user, node distance=4cm,
+            text width=8em] (transReqSvc) {Transfer Request Service};
+    \node [block, below of=user, node distance=1.0cm] (DFC) {DFC};
+    \node [block, right of=DFC, node distance=4cm,
+            text width=8em] (datasetSvc) {Dataset Service};
+    \node [block, right of=transReqSvc, node distance=4cm, yshift=-0.5cm, 
             text width=6em]
                                                     (Database) {TransferDB};
     \node [block, right of=Database, node distance=4cm] (transAgent) { Transfer Agent};
