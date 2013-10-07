@@ -19,7 +19,7 @@
         \node [block] 
             (part1) {check existing worker};
     % PART II
-        \node [block, below of=part1, node distance =3.5cm] 
+        \node [block, below of=part1, node distance =3.05cm] 
             (part2) {add new worker};
 
     % LINE part1 -> part2
@@ -27,8 +27,8 @@
             (part1) -- (part2);
     % LINE part2 -> part1
         \path[line,->]
-            (part2.south) |- ++(-2.0,-0.5)
-            -- ++(0, 5.5)
+            (part2.south) |- ++(-2.0,-0.4)
+            -- ++(0, 5.2)
             -| (part1.north);
 
     % in PART I
