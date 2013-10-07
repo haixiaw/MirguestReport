@@ -2,7 +2,7 @@
 Data Transfer is an essential part in grid.
 In the BESIII experiment, the result of Monte Carlo Simulation should 
 be transfered back from other sites to IHEP and the DST files for physics analysis 
-should be tranfered from IHEP to other sites. A robust transfer system should 
+should be transfered from IHEP to other sites. A robust transfer system should 
 make sure all data are transfered correctly.
 
 {\tt DIRAC} consists of cooperation distributed services
@@ -11,12 +11,5 @@ We reuse the most functionalities supplied by {\tt DIRAC}.
 {\tt BESDIRAC} is an extension to {\tt DIRAC} for BES specified. In {\tt BESDIRAC}, 
 a Dataset-based Data Transfer System is developed.
 In this paper, we present the design of this system and its implementation
-details. A {\tt Transfer Request Service} is used for creating and monitoring
-the transfer requests. A {\tt Transfer Agent} is used for transfering
-data from one SE to another. 
-For flexibility and reuse of the current low-level transfer systems,
-we have designed a transfer worker factory
-to create transfer workers with different protocols.
-A transfer worker is the wrapper of the low-level file transfer commands.
-The {\tt Transfer Agent} uses the {\tt Async I/O} to manage the transfer workers.
+details. 
 \end{abstract}
