@@ -32,18 +32,17 @@ and described as follows.
 \item The scheduler check the existing worker.
 It can be divided into several steps:
 \begin{enumerate}
-    \item We will check the status in database first.
+    \item Check the status in database.
           If user kills a transfer worker, the state in
           database will become ``kill''.
-          If the state is ``kill'', the scheduler will
-          send a signal to the sub process to stop the
-          transfer.
-    \item Then, check the process is terminated or not.
-          If it is still running, we will just return.
+          So the scheduler will
+          send a signal to terminate the
+          transfer process.
+    \item Check the process is terminated or not.
           If it is terminated, we need to do some other things.
     \item The worker will be removed from the queue.
     \item Handle the exit code to check the transfer is OK or not.
-    \item Then we update the status in the database 
+    \item Update the status in the database 
           and commit the entry in accounting system.
 \end{enumerate}
 \item The scheduler will add new worker if possible.
