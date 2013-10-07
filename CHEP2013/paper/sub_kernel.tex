@@ -4,15 +4,14 @@
 
 The transfer request service support a basic management which includes:
 \begin{itemize}
-    \item create a new transfer request.
+    \item create a new transfer request with dataset name,
+          source SE, described SE and protocol.
     \item show the status of the specific transfer request.
     \item kill or re-transfer one transfer process.
 \end{itemize}
-The user use a dataset name, source SE and destination SE to create a 
-new request with optional transfer protocol.
-
+%
 \subsection{Transfer Agent}
-
+%
 The Transfer Agent implements a non-blocking scheduler.
 It uses python's standard library {\tt subprocess} to 
 create the real transfer worker in a new process
