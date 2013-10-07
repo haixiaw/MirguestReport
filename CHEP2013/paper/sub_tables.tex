@@ -1,39 +1,25 @@
+
 \begin{table}
-    \caption{\label{tab:tranreq}Transfer Request attributes}
+    \caption{\label{tab:tranall}The attributes of Transfer Request 
+             and Transfer File}
     \begin{center}
-\begin{tabular}{lll}
+\begin{tabular}{ll|ll}
     \br
-    Attribute       & Data type     & Description \\
-    \mr
-    id              & int           & auto increment, primary key\\
-    username        & varchar(255)  & the user created the request\\
-    dataset         & varchar(255)  & the dataset name\\
-    srcSE           & varchar(255)  & source SE\\
-    dstSE           & varchar(255)  & destination SE\\
-    protocol        & varchar(255)  & transfer protocol\\
-    submit\_time    & datetime      & the request created timestamp \\
-    status          & enum          & the request's status\\
+\multicolumn{2}{c|}{attributes of Request} & 
+\multicolumn{2}{|c}{attributes of File}
+    \\
+
+Attribute       & Data type     &     Attribute       & Data type     \\
+\mr                                   
+id              & int           &     id              & int           \\ 
+username        & varchar(255)  &     LFN             & varchar(255)  \\
+dataset         & varchar(255)  &     trans\_req\_id  & int           \\
+srcSE           & varchar(255)  &     start\_time     & datetime      \\
+dstSE           & varchar(255)  &     finish\_time    & datetime      \\
+protocol        & varchar(255)  &     status          & enum          \\
+submit\_time    & datetime      &     error           & varchar(65535)\\
+status          & enum          &                     &               \\
     \br
 \end{tabular}
     \end{center}
 \end{table}
-
-\begin{table}
-    \caption{\label{tab:tranfiles}Transfer File List attributes}
-    \begin{center}
-\begin{tabular}{lll}
-    \br
-    Attribute       & Data type     & Description \\
-    \mr
-    id              & int           & auto increment, primary key\\
-    LFN             & varchar(255)  & the Logical File Name\\
-    trans\_req\_id  & int           & the transer request id\\
-    start\_time     & datetime      & start time of this file\\
-    finish\_time    & datetime      & finish time of this file\\
-    status          & enum          & the transfer status\\
-    error           & varchar(65535)& error info\\
-    \br
-\end{tabular}
-    \end{center}
-\end{table}
-
