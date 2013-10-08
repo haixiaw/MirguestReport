@@ -3,10 +3,10 @@
 \subsection{DIRAC Framework}
 
 % refer to CHEP2009, DIRAC3
-DIRAC \cite{bib:dirac3} 
+{\tt DIRAC} \cite{bib:dirac3} 
 has been adopted as the job management system and data management
 system for BESIII grid \cite{bib:besdfc}. 
-The DIRAC project provides a 
+The {\tt DIRAC} project provides a 
 complete set of tools to support the whole LHCb data processing.
 It was reorganized to separate generic and LHCb specific functionality
 in 2008-2010.
@@ -19,23 +19,23 @@ agents which deliver workload to the resources.
 Modular design applied in various system components allowed to quickly
 introduce new functionality and make component modifications without
 affecting other components.
-Its secure client/service framework called DISET \cite{bib:diset} 
+Its secure client/service framework called {\tt DISET} \cite{bib:diset} 
 is full-featured to implement these systems.
 
-\subsection{The BESDIRAC}
+\subsection{The BESDIRAC Project}
 
 % refer to Catriana
 Like LHCb, there are BESIII specific functionality in the grid.
-The BESDIRAC \cite{bib:besdirac} 
+The {\tt BESDIRAC} \cite{bib:besdirac} 
 is developed to provide these functionalities.
-BADGER (BESIII Advanced Data ManaGER) is the first sub-system
-in BESDIRAC. It is implemented based on DIRAC File Catalog(DFC)
-and integrated with DIRAC job management.
+{\tt BADGER} (BESIII Advanced Data ManaGER) is the first sub-system
+in {\tt BESDIRAC}. It is implemented based on {\tt DIRAC File Catalog}(DFC)
+and integrated with {\tt DIRAC} job management.
 It provides File Catalog, Metadata Catalog and Dataset Catalog.
 %
 The transfer system is the second sub-system implemented based on
-DIRAC framework. Services and agents are deployed in the server.
-The scalability and flexibility of DIRAC framework make the work
+{\tt DIRAC} framework. Services and agents are deployed in the server.
+The scalability and flexibility of {\tt DIRAC} framework make the work
 easy to be done. 
 
 \subsection{The architecture of the Transfer System}
@@ -49,9 +49,9 @@ The transfer system contains:
     \item {\tt Transfer DB} is the shared memory between the agent and 
           service. 
     \item {\tt Dataset Service} is for dataset management which is 
-          {\em deprecated} because it is in DFC now.
+          {\em deprecated} because it is in {\tt DFC} now.
     \item {\tt Accounting} is to keep the transfer history.
-          It follows the structure in DIRAC Accounting System
+          It follows the structure in {\tt DIRAC} Accounting System
           \cite{bib:diracacct}.
           It can be shown in the web portal.
     \item {\tt Web Portal} and {\tt command line scripts} are the 
