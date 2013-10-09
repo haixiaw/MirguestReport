@@ -3,9 +3,8 @@ We test the Transfer System with 900 million $J/\psi$ data
 which takes about 5TB disk space. 
 These data are divided into 9 datasets.
 It took 5 days to transfer 
-these data from IHEP to JINR. The throughput is show in 
+these data from IHEP to JINR. The throughput is shown in 
 figure \ref{fig:throughput}.
-
 \begin{figure}[h]
 \includegraphics[width=.6\textwidth, keepaspectratio]{data/throughput-dest-1001-10-06.png}
 \begin{minipage}[b]{.4\textwidth}
@@ -15,15 +14,9 @@ figure \ref{fig:throughput}.
 \end{minipage}
 \end{figure}
 
-The {\tt BESDIRAC} Transfer System is not so robust
-because of lacking of the experience.
-When the dataset is small, we don't find any problems.
-But when the dataset became huge, some unexpected errors occurred.
-\begin{itemize}
-    \item The proxy certificates of the users became expired
-            because of the long time waiting.
-    \item Some files' status always show ``transfer''.
-            But in fact the process had already terminated.
-    \item All the transfer processes are in the {\tt DIRAC} server
-            which may occupy too many resources.
-\end{itemize}
+The main limitation of this system is the inefficiency
+because of the polling to check the status of the transfer processes.
+It may waste some CPU time. But this system is easy to extend.
+Several transfer agents can be setup in several servers.
+We will test this after several {\tt DIRAC} instances are installed.
+
