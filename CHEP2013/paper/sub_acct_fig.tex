@@ -1,5 +1,5 @@
 \begin{center}
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=6em, text centered, rounded corners]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners]
 \tikzstyle{line} = [draw, -latex, line width=.1em]
 
 \pgfdeclarelayer{background}
@@ -11,40 +11,47 @@
     % DIRAC Accounting System
     \node [block] (acctkernel) {DIRAC Accounting System};
     % Web Portal
-    \node [block, right of=acctkernel, node distance=3cm
+    \node [block, left of=acctkernel, node distance=2.6cm
             ] (webportal) {Web Portal};
 
     % vertical line
-    \node [left of=acctkernel, node distance=3cm,
+    \node [right of=acctkernel, node distance=2.0cm,
             yshift=0.5cm](v1){};
-    \node [left of=acctkernel, node distance=3cm,
+    \node [right of=acctkernel, node distance=2.0cm,
             yshift=-0.5cm](v2){};
 
     % user defined type
-    \node [block, left of=v1, node distance=1cm, text width=6em,
+    \node [block, right of=v1, node distance=1cm, text width=6em,
             ] (usertype) {User Defined Type};
     % type plotter
-    \node [block, left of=v2, node distance=1cm, text width=6em,
+    \node [block, right of=v2, node distance=1cm, text width=6em,
             ] (plotter) {Type Plotter};
 
     % key/value fields
-    \node [left of=usertype, node distance=2cm,
+    \node [right of=usertype, node distance=2cm,
             yshift=0.3cm](kfv){};
-    \node [left of=usertype, node distance=2cm,
+    \node [right of=usertype, node distance=2cm,
             yshift=-0.3cm](vfv){};
-    \node [left of=kfv, node distance=1cm,
+    \node [right of=kfv, node distance=1cm,
             ](kf){Key Fields};
-    \node [left of=vfv, node distance=1cm,
+    \node [right of=vfv, node distance=1cm,
             ](vf){Value Fields};
 
+    \node [rectangle, draw, right of=kf, node distance=3.3cm,
+            text width=4cm
+            ] (vkf){{\tt\footnotesize user,src,dest,protocol...}};
+    \node [rectangle, draw, right of=vf, node distance=3.3cm,
+            text width=4cm
+            ] (vvf){{\tt\footnotesize size,time,OK}};
+
     % plot/report 
-    \node [left of=plotter, node distance=2cm,
+    \node [right of=plotter, node distance=2cm,
             yshift=0.3cm](ppv){};
-    \node [left of=plotter, node distance=2cm,
+    \node [right of=plotter, node distance=2cm,
             yshift=-0.3cm](prv){};
-    \node [left of=ppv, node distance=1cm,
+    \node [right of=ppv, node distance=1cm,
             ](pp){\verb"_plotXXX"};
-    \node [left of=prv, node distance=1cm,
+    \node [right of=prv, node distance=1cm,
             ](pr){\verb"_reportXXX"};
 
     % Path
@@ -53,10 +60,10 @@
     \path[line,<->](webportal)--(acctkernel);
 
     % curly braces
-    \draw[decorate,decoration={brace}
-            ](kfv.north east)--(vfv.south east);
-    \draw[decorate,decoration={brace}
-            ](ppv.north east)--(prv.south east);
+    \draw[decorate,decoration={brace,mirror}
+            ](kfv.north west)--(vfv.south west);
+    \draw[decorate,decoration={brace,mirror}
+            ](ppv.north west)--(prv.south west);
 
     % background
     \begin{pgfonlayer}{background}
