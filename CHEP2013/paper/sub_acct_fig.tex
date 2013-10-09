@@ -27,10 +27,36 @@
     \node [block, left of=v2, node distance=1cm, text width=6em,
             ] (plotter) {Type Plotter};
 
+    % key/value fields
+    \node [left of=usertype, node distance=2cm,
+            yshift=0.3cm](kfv){};
+    \node [left of=usertype, node distance=2cm,
+            yshift=-0.3cm](vfv){};
+    \node [left of=kfv, node distance=1cm,
+            ](kf){Key Fields};
+    \node [left of=vfv, node distance=1cm,
+            ](vf){Value Fields};
+
+    % plot/report 
+    \node [left of=plotter, node distance=2cm,
+            yshift=0.3cm](ppv){};
+    \node [left of=plotter, node distance=2cm,
+            yshift=-0.3cm](prv){};
+    \node [left of=ppv, node distance=1cm,
+            ](pp){\verb"_plotXXX"};
+    \node [left of=prv, node distance=1cm,
+            ](pr){\verb"_reportXXX"};
+
     % Path
     \path[line,<->](usertype)--(acctkernel);
     \path[line,<->](plotter)--(acctkernel);
     \path[line,<->](webportal)--(acctkernel);
+
+    % curly braces
+    \draw[decorate,decoration={brace}
+            ](kfv.north east)--(vfv.south east);
+    \draw[decorate,decoration={brace}
+            ](ppv.north east)--(prv.south east);
 
     % background
     \begin{pgfonlayer}{background}
