@@ -64,9 +64,9 @@ program.
 
 In the transfer system, transfer request service and transfer agent
 share the data using transfer database. In the database, we maintain
-two tables.They are shown in table \ref{tab:tranall}. 
-The left one is for the transfer status of dataset 
+two tables.
+One is for the transfer status of dataset 
 and another is for the transfer status of files in dataset. 
-
-% table for TransferRequest and TransferFileList
-\input{sub_tables.tex}
+The schemas of these tables are defined 
+in {\tt BESDIRAC/TransferSystem/DB/TransferDB.sql} in the {\tt BESDIRAC}
+project\cite{bib:besdirac}.
