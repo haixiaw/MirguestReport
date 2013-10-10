@@ -8,3 +8,14 @@ client side respectively\cite{bib:webportal}. {\tt BESDIRAC} web portal supports
 transfer request management, dataset management and  
 accounting of the transfer system. An example is shown in figure
 \ref{fig:ui}.
+
+In {\tt BESDIRAC}, we organize the web portal related code into one
+directory called {\tt Web}. There is a file called \verb"web.cfg"
+which is used to load the menu entries into the menu bar in {\tt DIRAC} 
+web portal. {\tt DIRAC} web portal support an uniform interface including
+the systems in DIRAC and extensions.
+Even though the {\tt DIRAC} project and {\tt DIRACWeb} are divided into
+two different projects, there are relations between these two projects. 
+Therefore, the {\tt Web} modules of {\tt BESDIRAC} is distributed 
+with {\tt BESDIRAC} together to make the consistency in the project. 
+
