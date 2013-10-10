@@ -2,13 +2,19 @@
 
 \subsection{Transfer Request Service}
 
-The transfer request service support a basic management which includes:
+The transfer request service supports a basic management which includes:
 \begin{itemize}
     \item create a new transfer request with dataset name,
           source SE, destination SE and protocol.
     \item show the status of the specific transfer request.
     \item kill or re-transfer one transfer process.
 \end{itemize}
+It derives from class {\tt RequestHandler} in {\tt DISET}
+which implements \verb"export_XYZ" methods.
+Then we use {\tt RPCClient} in {\tt DISET} to call these \verb"XYZ"
+methods. The users use this {\tt RPC} call mechanism to get useful
+information. The users can also use web portal to dispatch these
+{\tt RPC} calls.
 %
 \subsection{Transfer Agent}
 %
