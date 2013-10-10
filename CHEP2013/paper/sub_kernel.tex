@@ -38,11 +38,11 @@ and described as follows.
 It can be divided into several steps:
 \begin{enumerate}
     \item Check the status in database.
-          If user kills a transfer worker, the state in
-          database will become ``kill''.
-          So the scheduler will
+          For example, if user kills a transfer worker, the status in
+          database will become ``\verb"kill"''.
+          The scheduler will
           send a signal to terminate the
-          transfer process.
+          transfer process when ``\verb"kill"'' is detected..
     \item Check the process is terminated or not.
           If it is terminated, we need to do some other things.
     \item Remove the worker from the queue.
