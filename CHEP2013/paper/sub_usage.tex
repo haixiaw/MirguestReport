@@ -29,7 +29,7 @@ average throughput is 15MB/s. This figure is generated in
 The main limitation of this system is the inefficiency because of 
 the polling mechanism to check the status of the transfer processes.
 It may waste CPU time. But this system is easy to extend.
-Several transfer agents can be setup in different servers.
+Several transfer agents with multi-workers can be setup in different servers.
 We will test this after several {\tt DIRAC} instances are installed.
 Then, we will use one transfer database with several transfer agents
 while the transfer agents will get the new requests from the database.
