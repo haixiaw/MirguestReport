@@ -77,11 +77,13 @@ The schemas of these tables are defined
 in {\tt BESDIRAC/TransferSystem/DB/TransferDB.sql} in the {\tt BESDIRAC}
 project\cite{bib:besdirac}.
 
-In {\tt DIRAC}, an object derived from {\tt DB} is used to manipulate
-the tables in one database. In our system, we only need to define 
-a class called {\tt TransferDB}. It can be used by transfer request 
+In {\tt DIRAC}, a class called {\tt TransferDB} 
+derived from {\tt DB} is used to manipulate
+the tables in transfer database.
+It can be used by transfer request 
 service and transfer agent. A factory function called \verb"namedtuple" 
 for tuples with name fields
 in python's standard library
 is used to represent a record in tables.
-Several useful functions are defined in {\tt TransferDB}.
+Several useful functions are also defined in {\tt TransferDB}
+to simplify the operations.
