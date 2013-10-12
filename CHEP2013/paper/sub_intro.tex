@@ -33,13 +33,17 @@ Time    & 14-19 hours       & 4-6 hours \\
 % refer to fabio: 
 % http://indico.ihep.ac.cn/getFile.py/access?contribId=6&sessionId=1&resId=0&materialId=slides&confId=2779
 
-The resource at IHEP is not enough.
-An alternative distributed solution is required.
+When more and more processing data is accumulated,
+the resource at IHEP is not able to support to
+the data production of the experiment any more.
+An alternative distributed solution has been considered.
 The basic computing model is proposed to incorporate grid and
 cloud computing resources with the existing IHEP batch farm.
-IHEP central site do the raw data processing, MC production
-and analysis. The remote sites do part of MC production
-and analysis at peak time.
+In this model, most computing tasks including
+the raw data processing, MC production
+and analysis are performed at the central site, IHEP.
+However, a fraction of MC generation will be done at
+remote sites to meet the peak demand of cpu resources.
 % refer to xiaomei
 % http://indico.ihep.ac.cn/getFile.py/access?contribId=18&sessionId=4&resId=1&materialId=slides&confId=3161
 The result of MC simulation should be transferred back
