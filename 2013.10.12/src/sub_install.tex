@@ -6,7 +6,8 @@
 
 \begin{frame}
     \frametitle{Mandatory Dependencies}
-    Below list the external libraries in JUNO offline software.
+\begin{itemize}
+    \item Below list the external libraries in JUNO offline software.
     They are required to run a simple sniper example.
     \begin{itemize}
         \item CMT, v1r26
@@ -15,6 +16,76 @@
         \item Python, 2.7
         \item Boost, 1.53, compiled with python.
     \end{itemize}
-    In lxslc5, you can just source the files in
-    {\tt /afs/ihep.ac.cn/soft/dayabay/jmne/external/local/setup/}
+    \item In lxslc5, you can just source the files in
+    {\tt /afs/ihep.ac.cn/soft/dayabay/jmne/external/local/setup/}.
+    Then you will have these software.
+    \item The instruction later will tell you how to build from scratch
+    in SLC5.
+    \item Visit http://dyb2app1.ihep.ac.cn/mediawiki/index.php/ExternalLib
+    to see details.
+    \item In the future, we will use a script to install all these external
+    libraries.
+\end{itemize}
+\end{frame}
+
+\newsavebox{\installcmt}
+\begin{lrbox}{\installcmt}
+\begin{lstlisting}[language=bash]
+$ wget http://www.cmtsite.net/v1r26/CMTv1r26.tar.gz
+$ tar zxvf CMTv1r26.tar.gz 
+$ cd CMT/v1r26/mgr/
+$ ./INSTALL 
+$ source setup.sh 
+$ make
+$ # now we can setup it
+$ # only source this setup.sh is required
+$ source setup.sh 
+$ echo $CMTROOT 
+..../tutProject/externals/CMT/v1r26
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Building External Libraries}
+    In SLC5, we need build all these external libraries.
+    In PC like ubuntu, you can use {\tt apt-get install} to install
+    libraries such as Boost.
+    It is better to create a script to setup your own
+    libraries quickly.
+    We will use {\tt \$DYB2External} to indicate the root directory
+    of the external libraries.
+    \begin{block}{CMT}
+        \begin{itemize}
+            \item The website: http://www.cmtsite.net/
+            \item Download the source kit, and use 
+                {\tt tar zxvf} to extract it.
+            \item Install can refer to 
+                http://www.cmtsite.net/install.html.
+        \end{itemize}
+        \par\usebox{\installcmt}
+    \end{block}
+\end{frame}
+
+% Python
+\newsavebox{\installpython}
+\begin{lrbox}{\installpython}
+\begin{lstlisting}[language=bash]
+$ # check python version first, 
+$ # if it is already 2.7, just skip this slide.
+$ python -V
+Python 2.4.3
+$ wget http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz
+$ tar zxvf Python-2.7.5.tgz 
+$ cd Python-2.7.5
+$ ./configure --prefix=$DYB2External --enable-shared
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Building External Libraries(Cont.)}
+    It is also necessary to have Python 2.7 installed.
+    We will use python in our job configuration.
+
+    \begin{block}{Python}
+    \end{block}
 \end{frame}
