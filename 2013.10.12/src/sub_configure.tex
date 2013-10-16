@@ -1,0 +1,39 @@
+\begin{frame}
+    \begin{center}
+        \LARGE \tt{Configuration}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Configure the External library}
+    \begin{itemize}
+        \item Some environment variables need to be
+            set.
+        \item For python, make sure {\tt pkg-config}
+            can find python.
+            \begin{itemize}
+                \item {\tt pkg-config --cflags python}
+                \item {\tt pkg-config --libs python}
+                \item If some problems happens, check
+                    the variable {\tt \$PKG\_CONFIG\_PATH}
+            \end{itemize}
+        \item For Boost, set variable {\tt \$BOOSTHOME}
+            \begin{itemize}
+                \item If you install Boost in {\tt \$DYB2External},
+                    the {\tt \$BOOSTHOME} should be set to
+                    {\tt \$DYB2External}.
+                \item If the Boost libraries are found in 
+                    {\tt /usr/lib}, the {\tt \$BOOSTHOME}
+                    should be set to {\tt /usr}.
+            \end{itemize}
+        \item Here, the setup is complicated.
+            We need to simplify this. (Please give comments.)
+            \begin{itemize}
+                \item Use a unified directory structure.
+                \item Use unified environment variables.
+                \item Separate external libraries from sniper.
+                \item A good example: LCGCMT.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
