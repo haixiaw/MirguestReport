@@ -88,4 +88,54 @@ $ ./configure --prefix=$DYB2External --enable-shared
     \begin{block}{Python}
         \par\usebox{\installpython}
     \end{block}
+
+    After Python is installed, we need to install Boost.
+    Please follow the instruction in Boost. Boost Python
+    is required to be compiled.
+\end{frame}
+
+% get sniper
+\newsavebox{\getsniper}
+\begin{lrbox}{\getsniper}
+\begin{lstlisting}[language=bash]
+# set the environment variable $DYB2Area first
+$ echo $DYB2Area
+/afs/ihep.ac.cn/users/l/lint/data/workfs/jmne/tutProject
+$ cd $DYB2Area
+$ svn co \
+> http://dyb2app1.ihep.ac.cn/svn/sniper/branches/sniper-with-python\
+>  sniper
+$ export CMTPROJECTPATH=$DYB2Area:$CMTPROJECTPATH
+$ echo $CMTPROJECTPATH
+/afs/ihep.ac.cn/users/l/lint/data/workfs/jmne/tutProject:
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Get Sniper}
+    \begin{itemize}
+        \item The sniper with python binding can be found
+                in http://dyb2app1.ihep.ac.cn/svn/sniper/branches/sniper-with-python/.
+        \item The development version can be found in github:
+                https://github.com/mirguest/sniper
+        \item Suppose you have a working directory 
+                called {\tt \$DYB2Area}.
+        \item Append this path into {\tt \$CMTPROJECTPATH}
+    \end{itemize}
+    \begin{block}{Get it}
+        \par\usebox{\getsniper}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Get Sniper(Cont.): Some Tips}
+    \begin{itemize}
+        \item In CMT, {\tt \$CMTPROJECTPATH}
+                is used to locate the projects.
+        \item So, if you want CMT to locate the 
+                project sniper, you need to add the 
+                parent directory of sniper into 
+                the environment variable {\tt \$CMTPROJECTPATH}.
+
+    \end{itemize}
 \end{frame}
