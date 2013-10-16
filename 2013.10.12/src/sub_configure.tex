@@ -17,7 +17,7 @@
                 \item If some problems happens, check
                     the variable {\tt \$PKG\_CONFIG\_PATH}
             \end{itemize}
-        \item For Boost, set variable {\tt \$BOOSTHOME}
+        \item For Boost, set variable {\tt \$BOOSTHOME}, and {\$CPATH}.
             \begin{itemize}
                 \item If you install Boost in {\tt \$DYB2External},
                     the {\tt \$BOOSTHOME} should be set to
@@ -35,5 +35,44 @@
                 \item A good example: LCGCMT.
             \end{itemize}
     \end{itemize}
+\end{frame}
+
+% configure and compile sniper
+\newsavebox{\installsniper}
+\begin{lrbox}{\installsniper}
+\begin{lstlisting}[language=bash]
+$ cd $DYB2Area/sniper/SniperRelease/cmt/
+$ cmt br cmt config
+$ cmt br cmt make
+$ source setup.sh
+\end{lstlisting}
+\end{lrbox}
+% an example
+\newsavebox{\testsniper}
+\begin{lrbox}{\testsniper}
+\begin{lstlisting}[language=bash]
+$ cd $DYB2Area/Examples/HelloWorld/cmt
+$ cmt config
+$ cmt make
+$ source setup.sh
+$ cd ../share
+$ python pyalg6.py
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Configure the Sniper}
+    \begin{itemize}
+        \item If it is the first time to 
+                use your sniper, you need to
+                compile and setup it.
+        \item The next time, only setup is needed.
+    \end{itemize}
+    \begin{block}{Configure and Compile}
+        \par\usebox{\installsniper}
+    \end{block}
+    \begin{block}{A test}
+        \par\usebox{\testsniper}
+    \end{block}
 \end{frame}
 
