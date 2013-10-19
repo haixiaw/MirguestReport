@@ -1,0 +1,33 @@
+\begin{frame}
+    \begin{center}
+        \LARGE \tt{Begin a Project}
+    \end{center}
+\end{frame}
+
+% create a new project
+\newsavebox{\createproject}
+\begin{lrbox}{\createproject}
+\begin{lstlisting}[language=bash]
+$ cd $DYB2Area
+$ cmt create_project tutorial
+$ # edit tutorial/cmt/project.cmt
+$ cat tutorial/cmt/project.cmt
+project tutorial
+(*@\textcolor{red}{\textbf{use sniper}}@*)
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Begin a Project}
+    \begin{itemize}
+        \item We use CMT to manage our projects.
+        \item CMT need to locate these projects.
+        \item For simplicity, we can place the
+               new project in {\tt \$DYB2Area}.
+        \item The project should depend on sniper.
+    \end{itemize}
+    \begin{block}{Create A Project}
+        \par\usebox{\createproject}
+    \end{block}
+\end{frame}
+
