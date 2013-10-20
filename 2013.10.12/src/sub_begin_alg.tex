@@ -87,3 +87,23 @@ HelloWorldAlg::finalize()
         \par\usebox{\createalgimpl}
     \end{block}
 \end{frame}
+
+\newsavebox{\createalgcmt}
+\begin{lrbox}{\createalgcmt}
+\begin{lstlisting}
+package HelloAlg
+
+use SniperKernel v*
+use Boost v* Externals
+
+library HelloAlgs HelloWorldAlg.cc
+apply_pattern linker_library library=HelloAlgs
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{A new Algorithm(Cont.)}
+    \begin{block}{\(cmt/requirements\)}
+        \par\usebox{\createalgcmt}
+    \end{block}
+\end{frame}
