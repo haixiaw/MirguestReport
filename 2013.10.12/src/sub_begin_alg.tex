@@ -1,0 +1,89 @@
+\newsavebox{\createalg}
+\begin{lrbox}{\createalg}
+\begin{lstlisting}[language=bash]
+$ # first, cd to our project
+$ cd $DYB2Area/tutorial/HelloAlg
+$ # edit src/HelloWorldAlg.hh
+$ # edit src/HelloWorldAlg.cc
+$ # edit cmt/requirements
+
+$ cd cmt
+$ cmt config
+$ source setup.sh
+$ make
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{A new Algorithm}
+    \begin{itemize}
+        \item After creating a package, we can write our algorithms.
+        \item In sniper, an Algorithm derives from {\tt AlgBase}.
+    \end{itemize}
+    \begin{block}{Create An Algorithm}
+        \par\usebox{\createalg}
+    \end{block}
+\end{frame}
+
+\newsavebox{\createalgheader}
+\begin{lrbox}{\createalgheader}
+\begin{lstlisting}
+#ifndef HelloWorldAlg_hh
+#define HelloWorldAlg_hh
+
+#include "SniperKernel/AlgBase.h"
+
+class HelloWorldAlg: public AlgBase {
+    public:
+        HelloWorldAlg(const std::string& name);
+        ~HelloWorldAlg();
+
+        bool initialize();
+        bool execute();
+        bool finalize();
+};
+
+#endif
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{A new Algorithm(Cont.)}
+    \begin{block}{\(src/HelloWorldAlg.hh\)}
+        \par\usebox{\createalgheader}
+    \end{block}
+\end{frame}
+
+\newsavebox{\createalgimpl}
+\begin{lrbox}{\createalgimpl}
+\begin{lstlisting}
+#include "HelloWorldAlg.hh"
+HelloWorldAlg::HelloWorldAlg(const std::string& name)
+    : AlgBase(name)
+{ }
+HelloWorldAlg::~HelloWorldAlg()
+{ }
+bool
+HelloWorldAlg::initialize()
+{
+    return true;
+}
+bool
+HelloWorldAlg::execute()
+{
+    return true;
+}
+bool
+HelloWorldAlg::finalize()
+{
+    return true;
+}
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{A new Algorithm(Cont.)}
+    \begin{block}{\(src/HelloWorldAlg.cc\)}
+        \par\usebox{\createalgimpl}
+    \end{block}
+\end{frame}
