@@ -107,3 +107,104 @@ apply_pattern linker_library library=HelloAlgs
         \par\usebox{\createalgcmt}
     \end{block}
 \end{frame}
+
+\newsavebox{\runalg}
+\begin{lrbox}{\runalg}
+\begin{lstlisting}[language=python]
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+import sys
+sys.setdlopenflags( 0x100 | 0x2 )    # RTLD_GLOBAL | RTLD_NOW
+import libSniperMgr
+import libSniperPython as sp
+
+mgr = libSniperMgr.SniperMgr()
+sp.setProperty("Sniper", "EvtMax", 5)
+sp.setProperty("Sniper", "InputSvc", "NONE")
+sp.setProperty("Sniper", "LogLevel", 2)
+sp.setProperty("Sniper", "Dlls", ["HelloAlgs"])
+mgr.configure()
+
+x = sp.AlgMgr.get("HelloWorldAlg/x",True)
+
+mgr.initialize()
+mgr.run()
+mgr.finalize()
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Run an Algorithm using python}
+    \begin{itemize}
+        \item create a python script, then run it
+            (use "{\tt python share/job1.py}").
+    \end{itemize}
+    \begin{block}{\(share/job1.py\)}
+        \par\usebox{\runalg}
+    \end{block}
+\end{frame}
+
+% include
+\newsavebox{\createalgpropheader}
+\begin{lrbox}{\createalgpropheader}
+\begin{lstlisting}[linebackgroundcolor={\ifnum\value{lstnumber}=15\color{green}\fi}]
+#ifndef HelloWorldAlg_hh
+#define HelloWorldAlg_hh
+
+#include "SniperKernel/AlgBase.h"
+
+class HelloWorldAlg: public AlgBase {
+    public:
+        HelloWorldAlg(const std::string& name);
+        ~HelloWorldAlg();
+
+        bool initialize();
+        bool execute();
+        bool finalize();
+    private:
+        int m_count;
+};
+#endif
+\end{lstlisting}
+\end{lrbox}
+% source 
+\newsavebox{\createalgpropsrc}
+\begin{lrbox}{\createalgpropsrc}
+\begin{lstlisting}
+\end{lstlisting}
+\end{lrbox}
+% python
+\newsavebox{\createalgproppy}
+\begin{lrbox}{\createalgproppy}
+\begin{lstlisting}
+\end{lstlisting}
+\end{lrbox}
+
+
+\begin{frame}
+    \frametitle{Configure the job using python}
+    \begin{itemize}
+        \item An algorithm can be configured in python.
+        \item The property should be declared in the C++ first.
+        \item Modify the header and implementation.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Configure the job using python(Cont.)}
+    \begin{block}{\(src/HelloWorldAlg.hh\)}
+        \par\usebox{\createalgpropheader}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Configure the job using python(Cont.)}
+    \begin{block}{\(src/HelloWorldAlg.cc\)}
+        \par\usebox{\createalgpropsrc}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Configure the job using python(Cont.)}
+    \begin{block}{\(share/job1.py\)}
+        \par\usebox{\createalgproppy}
+    \end{block}
+\end{frame}
