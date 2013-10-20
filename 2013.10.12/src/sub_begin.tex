@@ -21,7 +21,7 @@ project tutorial
     \frametitle{Begin a Project}
     \begin{itemize}
         \item We use CMT to manage our projects.
-        \item CMT need to locate these projects.
+        \item CMT will locate these projects via {\tt \$CMTPROJECTPATH}.
         \item For simplicity, we can place the
                new project in {\tt \$DYB2Area}.
         \item The project should depend on sniper.
@@ -31,3 +31,45 @@ project tutorial
     \end{block}
 \end{frame}
 
+% create a new package
+\newsavebox{\createpackage}
+\begin{lrbox}{\createpackage}
+\begin{lstlisting}[language=bash]
+$ # first, cd to our project
+$ cd $DYB2Area/tutorial
+$ # create a package
+$ cmt create HelloAlg v0
+$ # Then we can write a new Alg.
+$ cd HelloAlg
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{A new Package}
+    \begin{itemize}
+        \item After a project is created, we can create new packages
+                in this project.
+    \end{itemize}
+    \begin{block}{Create A Package}
+        \par\usebox{\createpackage}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Package Structure}
+    \begin{itemize}
+        \item In a package, there are several directories and files.
+        \item cmt
+            \begin{itemize}
+                \item {\tt requirements}, used to generate setup.*sh and Makefile.
+                \item {\tt setup.*sh}, setup the runtime environment.
+                \item {\tt Makefile}, compile and install the package.
+            \end{itemize}
+        \item {\tt src}, source code for the package, including header 
+                and implementation.
+        \item {\tt binding}, binding code for the package.
+        \item Directory for header files, which is used for the public API.
+                It means these header files will be used by 
+                some other packages.
+    \end{itemize}
+\end{frame}
