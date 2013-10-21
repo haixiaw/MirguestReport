@@ -1,0 +1,18 @@
+
+\begin{frame}
+    \frametitle{A new Service}
+    \begin{itemize}
+        \item In sniper, a Service derives from {\tt SvcBase} and 
+                the interface of the service.
+        \item Create the interface first. 
+        \item Service interface will be used by other packages, so make the 
+                header file public.
+        \item Workflow:
+        \begin{enumerate}
+            \item create the service interface.
+            \item create the implementation of the service.
+            \item use "{\tt dynamic\_cast<IMySvc>(service(svc\_name))}"
+                  to load the specific service in an algorithm.
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
