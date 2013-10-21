@@ -254,3 +254,95 @@ mgr.finalize()
         \par\usebox{\createalgproppy}
     \end{block}
 \end{frame}
+
+\begin{frame}
+    \frametitle{More About property}
+    \begin{itemize}
+        \item In sniper, scalar, vector and map are supported.
+        \item Define the variables in algorithm first.
+        \item Declare the Property in constructor of the algorithm.
+        \item Set the property in python script.
+    \end{itemize}
+\end{frame}
+
+% header
+\newsavebox{\createalgmorepropheader}
+\begin{lrbox}{\createalgmorepropheader}
+\begin{lstlisting}
+#ifndef HelloWorldAlg_hh
+#define HelloWorldAlg_hh
+
+#include "SniperKernel/AlgBase.h"
+#include <vector>
+#include <map>
+
+class HelloWorldAlg: public AlgBase {
+
+    ...
+
+    private:
+        int m_count;
+        std::string m_myName;
+        std::vector<int> m_myIntVec;
+        std::map<std::string, std::string> m_myFile;
+};
+#endif
+\end{lstlisting}
+\end{lrbox}
+% impl
+\newsavebox{\createalgmorepropimpl}
+\begin{lrbox}{\createalgmorepropimpl}
+\begin{lstlisting}
+HelloWorldAlg::HelloWorldAlg(const std::string& name)
+    : AlgBase(name), m_count(0)
+{
+    declProp("myName", m_myName);
+    declProp("myIntVec", m_myIntVec);
+    declProp("myFile", m_myFile);
+}
+bool HelloWorldAlg::initialize()
+{
+    LogInfo << m_myName << std::endl;
+    for(std::vector<int>::iterator it=m_myIntVec.begin();
+            it!=m_myIntVec.end();
+            ++it) {
+        LogInfo << *it << std::endl;
+    }
+    for(std::map<std::string, std::string>::iterator 
+            it=m_myFile.begin(); it!=m_myFile.end(); ++it) {
+        LogInfo << it->first << " "
+                << it->second << std::endl;
+    }
+    return true;
+}
+\end{lstlisting}
+\end{lrbox}
+% python 
+\newsavebox{\createalgmoreproppython}
+\begin{lrbox}{\createalgmoreproppython}
+\begin{lstlisting}
+x = sp.AlgMgr.get("HelloWorldAlg/x",True)
+x.setProp("myName", "JUNO")
+x.setProp("myIntVec", [1,5,10])
+x.setProp("myFile", {"File1":"/some/path/1","File2":"/some/path/2"})
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{More About property(Cont.)}
+    \begin{block}{Header}
+        \par\usebox{\createalgmorepropheader}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{More About property(Cont.)}
+    \begin{block}{Implementation}
+        \par\usebox{\createalgmorepropimpl}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{More About property(Cont.)}
+    \begin{block}{python script}
+        \par\usebox{\createalgmoreproppython}
+    \end{block}
+\end{frame}
