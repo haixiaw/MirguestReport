@@ -19,6 +19,8 @@ $ make
     \begin{itemize}
         \item After creating a package, we can write our algorithms.
         \item In sniper, an Algorithm derives from {\tt AlgBase}.
+        \item Please use the macro {\tt DECLARE\_ALGORITHM} to declare
+              an algorithm. This is important.
     \end{itemize}
     \begin{block}{Create An Algorithm}
         \par\usebox{\createalg}
@@ -41,8 +43,9 @@ class HelloWorldAlg: public AlgBase {
         bool initialize();
         bool execute();
         bool finalize();
+    private:
+        int m_count;
 };
-
 #endif
 \end{lstlisting}
 \end{lrbox}
@@ -56,27 +59,28 @@ class HelloWorldAlg: public AlgBase {
 
 \newsavebox{\createalgimpl}
 \begin{lrbox}{\createalgimpl}
-\begin{lstlisting}
+\begin{lstlisting}[linebackgroundcolor={\ifnum\value{lstnumber}=4\color{green}\fi}]
 #include "HelloWorldAlg.hh"
+#include <SniperKernel/AlgFactory.h>
+#include <SniperKernel/SniperLog.h>
+DECLARE_ALGORITHM(HelloWorldAlg);
+
 HelloWorldAlg::HelloWorldAlg(const std::string& name)
-    : AlgBase(name)
+    : AlgBase(name), m_count(0)
 { }
 HelloWorldAlg::~HelloWorldAlg()
 { }
-bool
-HelloWorldAlg::initialize()
-{
-    return true;
+bool HelloWorldAlg::initialize()
+{ return true; }
+bool HelloWorldAlg::execute()
+{ 
+    ++m_count;
+    return true; 
 }
-bool
-HelloWorldAlg::execute()
-{
-    return true;
-}
-bool
-HelloWorldAlg::finalize()
-{
-    return true;
+bool HelloWorldAlg::finalize()
+{ 
+    LogInfo << m_count << std::endl;
+    return true; 
 }
 \end{lstlisting}
 \end{lrbox}
@@ -147,7 +151,7 @@ mgr.finalize()
 % include
 \newsavebox{\createalgpropheader}
 \begin{lrbox}{\createalgpropheader}
-\begin{lstlisting}[linebackgroundcolor={\ifnum\value{lstnumber}=15\color{green}\fi}]
+\begin{lstlisting}[linebackgroundcolor={\ifnum\value{lstnumber}=16\color{green}\fi}]
 #ifndef HelloWorldAlg_hh
 #define HelloWorldAlg_hh
 
@@ -163,20 +167,59 @@ class HelloWorldAlg: public AlgBase {
         bool finalize();
     private:
         int m_count;
+        std::string m_myName;
 };
 #endif
 \end{lstlisting}
 \end{lrbox}
 % source 
-\newsavebox{\createalgpropsrc}
-\begin{lrbox}{\createalgpropsrc}
+\newsavebox{\createalgpropsrcctor}
+\begin{lrbox}{\createalgpropsrcctor}
+\begin{lstlisting}[linebackgroundcolor={\ifnum\value{lstnumber}=4\color{green}\fi}]
+HelloWorldAlg::HelloWorldAlg(const std::string& name)
+    : AlgBase(name), m_count(0)
+{
+    declProp("myName", m_myName);
+}
+\end{lstlisting}
+\end{lrbox}
+\newsavebox{\createalgpropsrcexecute}
+\begin{lrbox}{\createalgpropsrcexecute}
 \begin{lstlisting}
+bool
+HelloWorldAlg::initialize()
+{
+    LogInfo << m_myName << std::endl;
+    return true;
+}
 \end{lstlisting}
 \end{lrbox}
 % python
 \newsavebox{\createalgproppy}
 \begin{lrbox}{\createalgproppy}
-\begin{lstlisting}
+\begin{lstlisting}[linebackgroundcolor={\ifnum\value{lstnumber}=18\color{green}\fi}]
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+import sys
+sys.setdlopenflags( 0x100 | 0x2 )    # RTLD_GLOBAL | RTLD_NOW
+
+import libSniperMgr
+import libSniperPython as sp
+
+mgr = libSniperMgr.SniperMgr()
+sp.setProperty("Sniper", "EvtMax", 5)
+sp.setProperty("Sniper", "InputSvc", "NONE")
+sp.setProperty("Sniper", "LogLevel", 2)
+sp.setProperty("Sniper", "Dlls", ["HelloAlgs"])
+
+mgr.configure()
+
+x = sp.AlgMgr.get("HelloWorldAlg/x",True)
+x.setProp("myName", "JUNO")
+
+mgr.initialize()
+mgr.run()
+mgr.finalize()
 \end{lstlisting}
 \end{lrbox}
 
@@ -198,8 +241,11 @@ class HelloWorldAlg: public AlgBase {
 \end{frame}
 \begin{frame}
     \frametitle{Configure the job using python(Cont.)}
-    \begin{block}{\(src/HelloWorldAlg.cc\)}
-        \par\usebox{\createalgpropsrc}
+    \begin{block}{Constructor in \(src/HelloWorldAlg.cc\)}
+        \par\usebox{\createalgpropsrcctor}
+    \end{block}
+    \begin{block}{Initialize in \(src/HelloWorldAlg.cc\)}
+        \par\usebox{\createalgpropsrcexecute}
     \end{block}
 \end{frame}
 \begin{frame}
