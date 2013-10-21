@@ -16,3 +16,37 @@
         \end{enumerate}
     \end{itemize}
 \end{frame}
+
+% create interface
+\newsavebox{\createinterface}
+\begin{lrbox}{\createinterface}
+\begin{lstlisting}[language=bash]
+$ # first, cd to our project
+$ cd $DYB2Area/tutorial/HelloAlg
+$ mkdir Hello 
+$ # edit Hello/IMySvc.hh
+\end{lstlisting}
+\end{lrbox}
+
+% header of interface.
+\newsavebox{\createinterfaceheader}
+\begin{lrbox}{\createinterfaceheader}
+\begin{lstlisting}
+#ifndef IMySvc_hh
+#define IMySvc_hh
+class IMySvc {
+public:
+    virtual std::string what()=0;
+    virtual ~IMySvc(){};
+};
+#endif
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Create an interface}
+    \par\usebox{\createinterface}
+    \begin{block}{The interface in \(Hello/IMySvc.hh\)}
+    \par\usebox{\createinterfaceheader}
+    \end{block}
+\end{frame}
