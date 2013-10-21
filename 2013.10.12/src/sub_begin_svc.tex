@@ -50,3 +50,105 @@ public:
     \par\usebox{\createinterfaceheader}
     \end{block}
 \end{frame}
+
+% impl svc
+% create interface
+\newsavebox{\implinterfacesh}
+\begin{lrbox}{\implinterfacesh}
+\begin{lstlisting}[language=bash]
+$ # first, cd to our project
+$ cd $DYB2Area/tutorial/HelloAlg
+$ # edit src/HelloSvc.hh
+$ # edit src/HelloSvc.cc
+$ # edit cmt/requirements
+
+$ cd cmt
+$ make
+\end{lstlisting}
+\end{lrbox}
+% create requirement
+\newsavebox{\implinterfacereq}
+\begin{lrbox}{\implinterfacereq}
+\begin{lstlisting}
+package HelloAlg
+
+use SniperKernel v*
+use Boost v* Externals
+
+apply_pattern install_more_includes more="Hello" 
+
+library HelloAlgs HelloWorldAlg.cc
+library HelloSvcs HelloSvc.cc
+apply_pattern linker_library library=HelloAlgs
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Implement the interface}
+    \par\usebox{\implinterfacesh}
+    \begin{block}{requirements}
+    \par\usebox{\implinterfacereq}
+    \end{block}
+\end{frame}
+
+% create header
+\newsavebox{\implinterfaceheader}
+\begin{lrbox}{\implinterfaceheader}
+\begin{lstlisting}
+#ifndef HelloSvc_hh
+#define HelloSvc_hh
+
+#include "SniperKernel/SvcBase.h"
+#include "Hello/IMySvc.hh"
+
+class HelloSvc: public SvcBase, public IMySvc {
+    public:
+        HelloSvc(const std::string& name);
+        ~HelloSvc();
+        bool initialize();
+        bool finalize();
+        std::string what();
+    private:
+        std::string m_sth;
+};
+#endif
+\end{lstlisting}
+\end{lrbox}
+% create impl
+\newsavebox{\implinterfaceimpl}
+\begin{lrbox}{\implinterfaceimpl}
+\begin{lstlisting}[linebackgroundcolor={\ifnum\value{lstnumber}=4\color{green}\fi}]
+#include "HelloSvc.hh"
+#include "SniperKernel/SvcFactory.h"
+
+DECLARE_SERVICE(HelloSvc);
+
+HelloSvc::HelloSvc(const std::string& name)
+    : SvcBase(name)
+{
+    declProp("Something", m_sth);
+}
+HelloSvc::~HelloSvc()
+{
+}
+bool HelloSvc::initialize()
+{ return true; }
+bool HelloSvc::finalize()
+{ return true; }
+std::string HelloSvc::what()
+{ return m_sth; }
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Implement the interface(Cont.)}
+    \begin{block}{\(src/HelloSvc.hh\)}
+    \par\usebox{\implinterfaceheader}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Implement the interface(Cont.)}
+    \begin{block}{\(src/HelloSvc.cc\)}
+    \par\usebox{\implinterfaceimpl}
+    \end{block}
+\end{frame}
