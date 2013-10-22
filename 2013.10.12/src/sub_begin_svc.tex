@@ -142,6 +142,12 @@ std::string HelloSvc::what()
 
 \begin{frame}
     \frametitle{Implement the interface(Cont.)}
+    \begin{itemize}
+        \item The properties of service should be declared in the 
+                implementation.
+        \item The properties in different services with the same interface 
+                can be different.
+    \end{itemize}
     \begin{block}{\(src/HelloSvc.hh\)}
     \par\usebox{\implinterfaceheader}
     \end{block}
@@ -150,5 +156,42 @@ std::string HelloSvc::what()
     \frametitle{Implement the interface(Cont.)}
     \begin{block}{\(src/HelloSvc.cc\)}
     \par\usebox{\implinterfaceimpl}
+    \end{block}
+\end{frame}
+
+% call svc from alg
+\newsavebox{\callsvc}
+\begin{lrbox}{\callsvc}
+\begin{lstlisting}
+bool
+HelloWorldAlg::initialize()
+{
+    // ... ...
+    LogInfo << "Use some service" << std::endl;
+    IMySvc* ms = dynamic_cast<IMySvc*>(service(m_myName));
+    LogInfo << ms->what() << std::endl;
+    return true;
+}
+\end{lstlisting}
+\end{lrbox}
+
+\begin{frame}
+    \frametitle{Call Service in Algorithm}
+    \begin{itemize}
+        \item For flexibility, use a property to select the service.
+        \item Here, {\tt m\_myName} will be used to select the service.
+    \end{itemize}
+    \begin{block}{\(src/HelloWorldAlg.cc\)}
+        \par\usebox{\callsvc}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Call Service in Algorithm(Cont.)}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+    \begin{block}{\(share/\)}
+        \par\usebox{\callsvc}
     \end{block}
 \end{frame}
