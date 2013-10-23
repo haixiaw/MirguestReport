@@ -174,12 +174,32 @@ HelloWorldAlg::initialize()
 }
 \end{lstlisting}
 \end{lrbox}
+\newsavebox{\callsvcpy}
+\begin{lrbox}{\callsvcpy}
+\begin{lstlisting}[language=python]
+mgr = libSniperMgr.SniperMgr()
+sp.setProperty("Sniper", "EvtMax", 5)
+sp.setProperty("Sniper", "InputSvc", "NONE")
+sp.setProperty("Sniper", "LogLevel", 2)
+sp.setProperty("Sniper", "Dlls", ["HelloSvcs", "HelloAlgs"])
+
+mgr.configure()
+
+s = sp.SvcMgr.get("HelloSvc/JUNO",True)
+s.setProp("Something", "JUNOSVC")
+s2 = sp.SvcMgr.get("HelloSvc/JUNO2",True)
+s2.setProp("Something", "Hello JUNO")
+
+x = sp.AlgMgr.get("HelloWorldAlg/x",True)
+x.setProp("myName", "JUNO2")
+\end{lstlisting}
+\end{lrbox}
 
 \begin{frame}
     \frametitle{Call Service in Algorithm}
     \begin{itemize}
         \item For flexibility, use a property to select the service.
-        \item Here, {\tt m\_myName} will be used to select the service.
+        \item Here, {\tt m\_myName} is used to select the service.
     \end{itemize}
     \begin{block}{\(src/HelloWorldAlg.cc\)}
         \par\usebox{\callsvc}
@@ -189,9 +209,10 @@ HelloWorldAlg::initialize()
 \begin{frame}
     \frametitle{Call Service in Algorithm(Cont.)}
     \begin{itemize}
-        \item 
+        \item Use {\tt SvcMgr} to create or get service in python.
+        \item So you can configure the service.
     \end{itemize}
-    \begin{block}{\(share/\)}
-        \par\usebox{\callsvc}
+    \begin{block}{\(share/job1.py(code\ fragment)\)}
+        \par\usebox{\callsvcpy}
     \end{block}
 \end{frame}
