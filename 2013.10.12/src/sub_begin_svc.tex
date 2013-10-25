@@ -11,7 +11,7 @@
         \begin{enumerate}
             \item create the service interface.
             \item create the implementation of the service.
-            \item use "{\tt dynamic\_cast<IMySvc>(service(svc\_name))}"
+            \item use "{\tt dynamic\_cast<IMySvc*>(service(svc\_name))}"
                   to load the specific service in an algorithm.
         \end{enumerate}
     \end{itemize}
@@ -69,7 +69,7 @@ $ make
 % create requirement
 \newsavebox{\implinterfacereq}
 \begin{lrbox}{\implinterfacereq}
-\begin{lstlisting}
+\begin{lstlisting}[linebackgroundcolor={\ifnum\value{lstnumber}=6\color{green}\fi}]
 package HelloAlg
 
 use SniperKernel v*
