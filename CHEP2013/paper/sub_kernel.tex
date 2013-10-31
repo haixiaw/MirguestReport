@@ -18,12 +18,11 @@ information. The users can also use web portal to dispatch these
 %
 \subsection{Transfer Agent}
 %
-The transfer agent implements a non-blocking scheduler.
-It uses python's standard library {\tt subprocess} to 
-create the real transfer worker in a new process
-and uses async I/O to communicate with this process.
-The output and status of the sub process will be used 
-to indicate whether the transfer is OK or not.
+The transfer agent implements a non-blocking scheduler 
+managing the transfer workers. A transfer worker is an object with
+the status saved in database and a process doing the transfer.
+The python's standard library {\tt subprocess} is used for communication
+between the worker and the real transfer process.
 %
 The workflow of the transfer agent is shown in figure \ref{fig:agent}
 and described as follows.
@@ -37,13 +36,13 @@ and described as follows.
 \item The scheduler checks the existing worker.
 It can be divided into several steps:
 \begin{enumerate}
-    \item Check the status in database.
+    \item Check the status of the worker in database.
           For example, if user kills a transfer worker, the status in
           database will become ``\verb"kill"''.
           The scheduler will
           send a signal to terminate the
           transfer process when ``\verb"kill"'' is detected..
-    \item Check the process is terminated or not.
+    \item Check the process of the worker is terminated or not.
     \item Remove the worker from the queue.
     \item Handle the exit code to check the transfer is OK or not.
     \item Update the status in the database 
@@ -51,9 +50,7 @@ It can be divided into several steps:
 \end{enumerate}
 \item The scheduler will add new worker if possible.
 If the system is idle and there are new requests,
-scheduler will create the new worker.
-Here, we will initialize the transfer worker and use the accounting
-system to create a new entry with some informations.
+scheduler will create a new worker.
 \end{enumerate}
 % Transfer Factory
 For flexibility, we use a {\tt TransferFactory} to create transfer workers
