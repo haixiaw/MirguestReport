@@ -1,20 +1,20 @@
 \subsection{User Interface}
 There are two types of User Interface: one is the command line scripts and 
 another is the web portal. 
-They are all simple wrappers for the RPC Call which are interaction
-with {\tt BESDIRAC}.
+They are all simple wrappers for the RPC Calls which interact
+with the {\tt BESDIRAC}.
 The web portal for {\tt BESDIRAC} uses {\tt Pylons} and {\tt ExtJS2} 
 in server side and
-client side respectively\cite{bib:webportal}. {\tt BESDIRAC} web portal supports
+client side respectively\cite{bib:webportal}. The {\tt BESDIRAC} web portal supports
 transfer request management, dataset management and  
 accounting of the transfer system. An example is shown in figure
 \ref{fig:ui}.
 
-In {\tt BESDIRAC}, the web portal related code is organized into one
+In {\tt BESDIRAC}, the web portal related code is organized into the
 directory called {\tt Web}. There is a file called \verb"web.cfg"
 which is used to load the menu entries into the menu bar in {\tt DIRAC} 
-web portal. {\tt DIRAC} web portal supports an uniform interface including
-the systems in DIRAC and extensions.
+web portal. The {\tt DIRAC} web portal supports a uniform interface for
+the systems in both DIRAC and extensions.
 Even though the {\tt DIRAC} project and {\tt DIRACWeb} are divided into
 two different projects, there are relations between these two projects. 
 Therefore, the {\tt Web} modules of {\tt BESDIRAC} is distributed 
