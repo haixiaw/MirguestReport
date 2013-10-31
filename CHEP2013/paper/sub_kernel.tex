@@ -19,9 +19,9 @@ information. The users can also use web portal to dispatch these
 \subsection{Transfer Agent}
 %
 The transfer agent implements a non-blocking scheduler 
-managing the transfer workers. A transfer worker is an object with
-the status saved in database and a process doing the transfer.
-One transfer worker will only transfer one file in the dataset.
+managing the transfer workers. A transfer worker is an object whose
+the status is saved in database while it also has a process being executed
+with the low level transfer tools.
 The python's standard library {\tt subprocess} is used for communication
 between the worker and the real transfer process.
 %
