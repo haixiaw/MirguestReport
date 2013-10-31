@@ -19,15 +19,16 @@ affecting other components.
 \subsection{The BESDIRAC Project}
 
 % refer to Catriana
-Like LHCb, there are BESIII specific functionalities in the grid.
+Like the LHCb, the BESIII also needs experiment-specific 
+functionalities in its grid.
 The {\tt BESDIRAC} \cite{bib:besdirac} 
-is developed to provide these functionalities.
-The structures of {\tt BESDIRAC} and {\tt DIRAC} are the same.
+is developed to provide these functionalities
+based on the underlying framework of DIRAC.
 The first level is the system name. The second level contains
 {\tt Client}, {\tt Service}, {\tt Agent}, {\tt DB} and auxiliary classes.
 Also, there are {\tt Web} directories if web portal is needed.
 The {\tt DIRAC} will automatically load these extensions when 
-{\tt BESDIRAC} is enabled in the {\tt DIRAC}'s configuration server.
+{\tt BESDIRAC} is enabled by the {\tt DIRAC}'s configuration service.
 
 {\tt BADGER} (\verb"BESIII Advanced Data ManaGER") is the first sub-system
 in {\tt BESDIRAC}. It is implemented based on {\tt DIRAC File
