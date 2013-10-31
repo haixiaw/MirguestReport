@@ -42,27 +42,24 @@ New services and agents can be easily deployed in the server
 due to {\tt DIRAC}'s good scalability and flexibility.
 
 \subsection{The architecture of the Transfer System}
-
-The transfer system contains:
-
+The main components of the transfer system are as follows:
 \begin{itemize}
     \item {\tt Transfer Agent} is the scheduler to manage transfer workers.
     \item {\tt Transfer Request Service} is to manage the transfer requests
           created by users.
     \item {\tt Transfer DB} is the shared memory between the agent and 
           service. 
-    \item {\tt Dataset Service} is for dataset management which is 
+    \item {\tt Dataset Service} is the dataset manager which is 
           {\em deprecated} because it is in {\tt DFC} now.
     \item {\tt Accounting} is to keep the transfer history.
           It follows the structure in {\tt DIRAC} Accounting System
           \cite{bib:diracacct}.
-          It can be shown in the web portal.
+          It can be easily integrated with the web portal.
     \item {\tt Web Portal} and {\tt command line scripts} are the 
-          User Interface for users.
+          two types of User Interface.
 \end{itemize}
 
 The workflow is described as follows.
-
 \begin{enumerate}
 \item Administrator creates datasets in {\tt DFC} first. 
 \item User creates a transfer request of dataset using the command line 
