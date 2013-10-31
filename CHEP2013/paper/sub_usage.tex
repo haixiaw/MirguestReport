@@ -1,14 +1,15 @@
 \section{Usage and limitation}
-We test the transfer tool with 900 million $J/\psi$ data 
+We test the transfer tool with 900 million $J/\psi$ event data 
 which takes about 5TB disk space. 
 These data are divided into 9 datasets.
 It took 5 days to transfer 
 these data from IHEP to JINR. The throughput is shown in 
 figure \ref{fig:throughput}.
-It is not very high due to the poor network connectivity.
+The transfer speed is not high, about 13MB/s,
+due to the poor network connectivity.
 Currently, the consistency check does not take place.
-In the future version, we need to check the file is same between
-the remote sites.
+In the future version, we need to check the transfered files 
+are the same between the remote sites.
 \begin{figure}[h]
 \begin{minipage}{.49\textwidth}
 \includegraphics[width=.95\textwidth, keepaspectratio]{data/transreqlist-with-kill-retransfer.png}
@@ -21,7 +22,7 @@ web portal}
 \begin{minipage}{.49\textwidth}
 \includegraphics[width=.95\textwidth, keepaspectratio]{data/throughput-dest-1001-10-06.png}
 \caption{\label{fig:throughput}Throughput from Oct.1 to Oct.6, 
-average throughput is 15MB/s. This figure is generated in 
+average throughput is 13MB/s. This figure is generated in 
 {\tt DIRAC} web portal automatically.}
 \end{minipage}
 \end{figure}
