@@ -54,15 +54,15 @@ If the system is idle and there are new requests,
 scheduler will create a new worker.
 \end{enumerate}
 % Transfer Factory
-For flexibility, we use a {\tt TransferFactory} to create transfer workers
+For flexibility, a {\tt TransferFactory} is used to create transfer workers
 with different protocols. 
-We define an interface {\tt ITransferWorker},
+An interface {\tt ITransferWorker} is defined
 which will be used by the transfer agent. The derived class should
 implement the interface and construct the command line which will 
 be called when the worker begins to run.
 The derived class can also define how to handle the output of the 
 process.
-This design allows us to build high-level transfer system.
+Building a high-level transfer system is simplified by this design.
 
 \subsection{Transfer Database}
 
